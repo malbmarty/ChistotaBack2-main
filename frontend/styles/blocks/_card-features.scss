@@ -1,0 +1,17 @@
+@use "../helpers" as *;
+
+.card-features {
+  display: flex;
+  align-items: center;
+  // border: 1px solid var(--color-gray-100);
+  background-color: #F5F8FC;
+  font-family: var(--font-family);
+  font-size: rem(16);
+  line-height: rem(21);
+  border-radius: rem(150);
+  gap: rem(6);
+  padding: rem(4) rem(8);
+  text-transform: uppercase;
+}
+
+

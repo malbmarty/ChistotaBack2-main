@@ -1,0 +1,1238 @@
+{% load django_vite %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Чистота ДВ">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Чистота ДВ">
+    <meta name="msapplication-TileColor" content="#009BE5">
+
+    <meta property="og:title" content="Чистота ДВ">
+    <meta property="og:description" content="Профессиональный клининг для дома и офиса с гарантией качества.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chistota-dv.ru/">
+    <meta property="og:image" content="/og-image.jpg">
+
+    <meta name="currency" content="ruble">
+    <meta name="theme-color" content="#009BE5">
+    <meta name="description" content="Профессиональный клининг во Владивостоке: уборка квартир, уборка офисов, генеральная уборка, послеремонтная уборка. Надежная клининговая компания с опытом.">
+    <meta name="author" content="Чистота ДВ">
+    <meta name="copyright" content="© 2025 ЧИСТОТА ДВ">
+
+    <title>Услуги клининга во Владивостоке — профессиональная уборка квартир и офисов</title>
+    <link rel="icon" sizes="32x32" href="{% static "pages/favicon.svg" %}">
+    <link rel="icon" sizes="32x32" href="{% static "pages/icons/favicons/favicon.svg" %}" type="image/svg+xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "pages/icons/favicons/favicon.png" %}">
+    <link rel="canonical" href="https://www.chistota-dv.ru/">
+
+    <!-- <script>
+        window.gisReviewsData = {{ gis_reviews_json|safe }};
+    </script> -->
+    {% vite_hmr_client %}
+    {% vite_asset 'scripts/main.js' %}
+</head>
+<body id='top'>
+    <header class="header">
+        <div class="header__body container">
+            <div class="header__body-inner">
+                <a href="#top"  class="header__logo">
+                    <img
+                            src="{% static "pages/icons/logo.svg" %}"
+                            alt="Чистота ДВ"
+                            class="header__logo"
+                            width="163" height="26"
+                    >
+                </a>
+                
+                <div class="header__overlay">
+                    <nav class="header__menu">
+                        <ul class="header__menu-list">
+                            <li class="header__menu-item">
+                                <a href="#about" class="header__menu-link">О компании</a>
+                            </li>
+                            <li class="header__menu-item">
+                                <a href="#service" class="header__menu-link">Услуги</a>
+                            </li>
+                            <li class="header__menu-item">
+                                <a href="#cases" class="header__menu-link">Кейсы</a>
+                            </li>
+                            <li class="header__menu-item">
+                                <a href="#faq" class="header__menu-link">Контакты</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="header__contacts">
+                        <a href="tel:89121244221" class="header__contacts-link">
+                            +7 (912) 124 42-21
+                        </a>
+                        <div class="header__contacts-wrapper">
+                            <a href="" class="header__contacts-logo">
+                                <img
+                                    src="data:image/svg+xml,%3csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M23.974 50H26.0559C37.3579 50 43.01 50 46.52 46.49C50.03 42.98 50 37.3301 50 26.0559V23.944C50 12.672 50 7.02002 46.52 3.51001C43.04 1.00583e-05 37.3579 0 26.0559 0H23.974C12.67 0 7.01999 1.00583e-05 3.50998 3.51001C-2.23517e-06 7.02002 0 12.668 0 23.944V26.0559C0 37.3301 -2.23517e-06 42.98 3.50998 46.49C7.01999 50 12.67 50 23.974 50Z' fill='url(%23paint0_linear_2138_4491)'/%3e%3cpath d='M17.9594 8.11772C16.1506 8.2031 14.9151 8.49282 13.8355 8.91585C12.718 9.35152 11.7706 9.9354 10.8282 10.8817C9.88466 11.8285 9.30521 12.7776 8.87285 13.8963C8.45424 14.9786 8.17057 16.2146 8.09069 18.0246C8.01139 19.8378 7.9932 20.4162 8.00204 25.0325C8.01084 29.6483 8.03122 30.2277 8.11769 32.0415C8.20415 33.8498 8.4928 35.0847 8.91582 36.1649C9.35205 37.2825 9.93532 38.2293 10.8821 39.1723C11.8284 40.1153 12.778 40.6942 13.8972 41.1271C14.9785 41.5452 16.215 41.8299 18.0244 41.9093C19.8376 41.9891 20.4165 42.0067 25.0317 41.9979C29.649 41.9891 30.228 41.9687 32.0412 41.8828C33.85 41.7963 35.0843 41.5066 36.165 41.0847C37.2826 40.6474 38.23 40.0652 39.1724 39.1183C40.1148 38.172 40.6942 37.2224 41.1266 36.1032C41.5453 35.0219 41.83 33.7854 41.9088 31.9771C41.9881 30.1627 42.0068 29.5833 41.998 24.9675C41.9892 20.3512 41.9683 19.7728 41.8823 17.9601C41.7964 16.1502 41.5067 14.9158 41.0842 13.8351C40.6475 12.7175 40.0647 11.7712 39.1184 10.8277C38.1721 9.88527 37.2226 9.30471 36.1033 8.87344C35.0216 8.45482 33.7856 8.16949 31.9762 8.09128C30.1629 8.01086 29.5841 7.99325 24.9672 8.00206C20.3515 8.01087 19.7727 8.0307 17.9594 8.11772ZM18.1577 38.8495C16.5003 38.7774 15.6003 38.502 15.0005 38.2712C14.2062 37.9638 13.6395 37.5953 13.043 37.0032C12.4475 36.4089 12.0779 35.8438 11.7678 35.0511C11.5348 34.4513 11.2545 33.5524 11.1768 31.895C11.0926 30.1032 11.0733 29.5656 11.065 25.0264C11.0562 20.4883 11.0727 19.9507 11.151 18.1573C11.222 16.501 11.4991 15.5999 11.7293 15.0006C12.0366 14.2052 12.404 13.6396 12.9972 13.0431C13.5915 12.4465 14.1567 12.078 14.9498 11.7679C15.5491 11.5338 16.448 11.2557 18.1048 11.1769C19.8977 11.0921 20.4347 11.0739 24.9727 11.0651C29.5119 11.0563 30.0495 11.0723 31.8429 11.151C33.4991 11.2232 34.4002 11.4975 34.999 11.7294C35.7938 12.0367 36.3605 12.403 36.9565 12.9973C37.5525 13.5917 37.9221 14.1557 38.2322 14.9505C38.4663 15.5481 38.7444 16.4481 38.8226 18.1044C38.908 19.8973 38.9273 20.4349 38.9355 24.973C38.9443 29.5122 38.9278 30.0498 38.8491 31.8421C38.7769 33.4995 38.5021 34.4001 38.2707 35.0005C37.9634 35.7942 37.596 36.361 37.0022 36.9575C36.4085 37.5518 35.8434 37.9225 35.0496 38.2326C34.4515 38.4661 33.5515 38.7449 31.8958 38.8236C30.1029 38.9079 29.5659 38.9272 25.0262 38.9354C20.4881 38.9443 19.9511 38.9272 18.1577 38.8495ZM32.0164 15.9128C32.0186 17.0386 32.934 17.9502 34.0599 17.948C35.1862 17.9458 36.0978 17.0309 36.0962 15.9051C36.094 14.7792 35.1785 13.8671 34.0522 13.8693C32.9258 13.8715 32.0142 14.7869 32.0164 15.9128ZM16.2712 25.0165C16.2806 29.8377 20.1962 33.7375 25.0163 33.7281C29.8369 33.7187 33.7387 29.8041 33.7294 24.9829C33.72 20.1634 29.8038 16.2614 24.9827 16.2708C20.1626 16.2802 16.2618 20.1964 16.2712 25.0165ZM19.3331 25.0105C19.3276 21.8813 21.8602 19.3393 24.9887 19.3338C28.1178 19.3278 30.6603 21.8593 30.6664 24.989C30.6725 28.1187 28.1399 30.6601 25.0102 30.6662C21.8817 30.6722 19.3391 28.1402 19.3331 25.0105Z' fill='white'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_2138_4491' x1='25' y1='0' x2='25' y2='50' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23C51EA9'/%3e%3cstop offset='0.293269' stop-color='%23D22097'/%3e%3cstop offset='0.698907' stop-color='%23E75D5A'/%3e%3cstop offset='1' stop-color='%23F2A328'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+                                    alt="Instagram"
+                                    class="cta__logo"
+                                    width="32" height="32"
+                                >
+                            </a>
+                            <a href="" class="header__contacts-logo">
+                                <img
+                                        src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M16%2032C24.8366%2032%2032%2024.8366%2032%2016C32%207.16344%2024.8366%200%2016%200C7.16344%200%200%207.16344%200%2016C0%2024.8366%207.16344%2032%2016%2032Z'%20fill='url(%23paint0_linear_54_639)'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M7.24285%2015.8311C11.9072%2013.7989%2015.0175%2012.4591%2016.5737%2011.8119C21.0171%209.9637%2021.9404%209.64266%2022.5421%209.63206C22.6745%209.62973%2022.9704%209.66253%2023.1621%209.81808C23.324%209.94942%2023.3685%2010.1269%2023.3899%2010.2514C23.4112%2010.3759%2023.4377%2010.6596%2023.4166%2010.8812C23.1758%2013.4112%2022.1339%2019.5508%2021.6039%2022.3844C21.3796%2023.5834%2020.938%2023.9855%2020.5104%2024.0248C19.5813%2024.1103%2018.8757%2023.4108%2017.9758%2022.8208C16.5676%2021.8977%2015.7721%2021.3231%2014.4051%2020.4223C12.8254%2019.3813%2013.8495%2018.8092%2014.7498%2017.8741C14.9854%2017.6294%2019.0792%2013.9058%2019.1585%2013.568C19.1684%2013.5257%2019.1776%2013.3682%2019.084%2013.2851C18.9905%2013.2019%2018.8524%2013.2304%2018.7527%2013.253C18.6115%2013.285%2016.3619%2014.772%2012.0038%2017.7137C11.3653%2018.1522%2010.7869%2018.3659%2010.2687%2018.3547C9.69743%2018.3423%208.59851%2018.0317%207.78158%2017.7661C6.77957%2017.4404%205.9832%2017.2682%206.05255%2016.715C6.08867%2016.4269%206.48544%2016.1322%207.24285%2015.8311Z'%20fill='white'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_54_639'%20x1='1600'%20y1='0'%20x2='1600'%20y2='3176.27'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%232AABEE'/%3e%3cstop%20offset='1'%20stop-color='%23229ED9'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+                                        alt="Telegram"
+                                        class="header__logo"
+                                        width="32" height="32"
+                                >
+                            </a>
+                            <a href="" class="header__contacts-logo">
+                                <img
+                                        src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M15.3434%2032H16.6758C23.9091%2032%2027.5264%2032%2029.7728%2029.7536C32.0192%2027.5072%2032%2023.8913%2032%2016.6758V15.3242C32%208.11008%2032%204.49281%2029.7728%202.24641C27.5456%206.4373e-06%2023.9091%200%2016.6758%200H15.3434C8.1088%200%204.4928%206.4373e-06%202.24639%202.24641C-1.43051e-06%204.49281%200%208.10753%200%2015.3242V16.6758C0%2023.8913%20-1.43051e-06%2027.5072%202.24639%2029.7536C4.4928%2032%208.1088%2032%2015.3434%2032Z'%20fill='%230077FF'/%3e%3cpath%20d='M17.1722%2023.0717C9.95684%2023.0717%205.57796%2018.0656%205.40771%209.74687H9.06212C9.17604%2015.8576%2011.9562%2018.4509%2014.0874%2018.9795V9.74687H17.5908V15.0192C19.6464%2014.7914%2021.7969%2012.3926%2022.5213%209.74687H25.9658C25.4141%2013.0019%2023.073%2015.4006%2021.4167%2016.3901C23.073%2017.1901%2025.738%2019.2842%2026.7658%2023.0717H22.9783C22.1783%2020.5398%2020.2174%2018.5789%2017.5908%2018.3126V23.0717H17.1722Z'%20fill='white'/%3e%3c/svg%3e"
+                                        alt="Вконтакте"
+                                        class="header__logo"
+                                        width="32" height="32"
+                                >
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button
+                        class="header__burger-button burger-button visible-mobile"
+                        type="button"
+                        aria-label="Меню"
+                        title="Меню"
+                        data-js-header-burger-button
+                >
+                    <span class="burger-button__line"></span>
+                    <span class="burger-button__line"></span>
+                    <span class="burger-button__line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div id="loader-overlay">
+        <div class="loader"></div>
+    </div>
+    <main id="main" class="blurred">
+        <div class="overflow-wrapper">
+            <section class="hero">
+                <div class="hero__main hidden-tablet">
+                        <div class="hero__body">
+                            <div class="hero__header-inner">
+                                <h3 class="hero__header splitting-text" data-splitting>
+                                    С нами у вас всегда <br>
+                                    <span class="hero__header-print"></span>
+                                </h3>
+                                <p class="hero__subheader">
+                                    Клининговая компания №1 в Приморском крае
+                                </p>
+
+                                <div class="hero__review">
+                                    <button class="review-button" onclick="window.open('https://www.vl.ru/chistota-dv', '_blank')">
+                                        <img
+                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOLSURBVHgBzVdNaBNBFP5mdjdNqiFJa8WDYosHEQX/LiKICt5b0Zug+IPoQfAggierBxFEqAdRBFFvXgTx76JoqzfRWhHEg9hUemlpm9W0sSa7M7633YRtmzbbJC1+sPmZnZnv/c2b9wRCInkvk3QLboeAsVsAW2iolYf91zY9aQ30adftMaLGY/toyg6zr6g0IXkr06oMdVZAHgkQVgQJc1+6uGSfTqVRjQCsscrjohA4ixqgNbpkhASZwyJlBWCttYE3mDJz7dBIC4W95awhZ5HfzGypKzlDoFVLvOG9Z78Kktdb85koY4mSAOxzXcCnRSMPChHB1mJMlFzAAbfo5Axyh8/l/0XJ9P1YQggXbewKzwJKqk4sMTi3eIL4vs+gzsg7Gn9zmvMAmpYJNC+XyNLYhFMKPFtYaDNB6RUwUCt4U5fIshkX61eZuLArhgPrIhicUHjwLY+XPx2M5ZWXmXwJvNRuKi32iIoJuQI5rbdHXJzcEcW1nQk0kD5n3uZw/Mk4RFQgRo/0SYJcfK+YQsjNwc30DK0qEedIw00tJt6dS6DRFLj8/g8uvsohvkIi3mR4Cs+5ni41E4GjxyZcGRPY3mIgm9foHXQwPK7REJvSIriXQavHSOu77ctxbEMDFL1cc9vGKG2SXDlFPB+5j1Y+BcngpkMUON0DDkwp8PxgHPp8E552xLG6QeCXrciUPvmwi94TCRwl8hwFl3F1BBOkTiQiwhAXkRSJO5my09m8kzmFQh54dCCO9jYLP3672Pcwi/4hB72nktjUbHrzrCujaF5lwFFYMFiADOa556Xv540pAx8PJ7yxD8MONq8wYZH9Gq+PIpY04FZBTrDZBen5ZrBvo40S3yc1kY15Y9tapsjbn2Uh6XxXSc5IS63V5zAz2dTRhESiK+NZ5cuoi6dfCyRI9WeYSzgphe4Ou4CtoWPAidc5HHoxjlSTRPh4KyOAi55iKuaLKHS9N0lRbxl8GmrLYJSKU5LvZQ31YCELo5RwaiXnopW5vdtQurILSwyumL1v/uB7maxwA0sE0v5GsSwrVUTSkp2ocCTrxJ6WFjpLvMUf7A+qUvYuqhDFojTQI0wry9ksooD9iyIEkzvYP7M3+P8aE4ZnCQtb6xGYHHBeGT5HjxiuOaWilQqXIwgPL7fw8a66OZ0lCGVMFNChtKISTlCLJdZiWnuuB7TWfVLIblgI3Z7/A9REe8uT8RSyAAAAAElFTkSuQmCC"
+                                                alt="VL.ru"
+                                                class="hero__review-logo"
+                                                width="32" height="32"
+                                        >
+                                        <span>{% if vl_data.average_rating %}{{ vl_data.average_rating }}{% else %} 5.0{% endif %}</span>
+                                        <img
+                                                src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M11.4416%202.9252L12.9083%205.85853C13.1083%206.26686%2013.6416%206.65853%2014.0916%206.73353L16.7499%207.1752C18.4499%207.45853%2018.8499%208.69186%2017.6249%209.90853L15.5583%2011.9752C15.2083%2012.3252%2015.0166%2013.0002%2015.1249%2013.4835L15.7166%2016.0419C16.1833%2018.0669%2015.1083%2018.8502%2013.3166%2017.7919L10.8249%2016.3169C10.3749%2016.0502%209.63326%2016.0502%209.17492%2016.3169L6.68326%2017.7919C4.89992%2018.8502%203.81659%2018.0585%204.28326%2016.0419L4.87492%2013.4835C4.98326%2013.0002%204.79159%2012.3252%204.44159%2011.9752L2.37492%209.90853C1.15826%208.69186%201.54992%207.45853%203.24992%207.1752L5.90826%206.73353C6.34992%206.65853%206.88326%206.26686%207.08326%205.85853L8.54992%202.9252C9.34992%201.33353%2010.6499%201.33353%2011.4416%202.9252Z'%20fill='%23F9CB2D'/%3e%3c/svg%3e"
+                                                alt=""
+                                                class=""
+                                                width="20" height="20"
+                                        >
+                                    </button>
+                                    <button class="review-button" onclick="window.open('https://yandex.ru/maps/-/CHWKmQ7K', '_blank')">
+                                        <img
+                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAI6SURBVHgB7ZexbhNBEIb/2dhFpIBSunAk0yPFJUiWODeQAgmK0CPxAMAT4PACgEQJEj0uUkY0uQIJSjd0SDiQwqUF6Y67YWbB512T892R87nhl07y3u7q/2Z2dqwjLCjqtQMY3DVEdxjooAIReMSgUUTRwWY4Gftzf8TB9naSXHrChEdYoYjx3JgfBxROpymANeetY6HsogZpRgyd9RXC6AsbeU3mKvVSTwvDQasTc/ML1iAm7ps4aQ6wLiW22Hk3a56617ARfk0fuv8YeaK9e/6eVjt7rdw0s+zsefRRng/p2Ow/ALYuYymAA2n3T06XLe8Y5IjfPJsPxJwUIsu8d9OLmIevkKd8gIUs0N5+5loPbvIN/P4dLgxgIZwsUGvH1sZfksipez0dJm7mLgwgWYBzlucVo/dOoz8aojIAVTJ8PTeTSL0sSPRGqt8DLqjCAHz0Fjj7PodwIqbeLX9twfSXAlDzrCy4xaegOVfPUwMlxArg9gJJu/03E8OZaZnoVfTzxg6X2iCpN07649tXvaMpq+JHMJPWggu0pDGtBEBT7TaYIu25UgAL4bZYbc8Lt2D1ANqeP39Kx+d2xlUCWLmFJ+25foCK9B9AAPgEaxLJx0qDGYdEeIiS4pdPwbP7/4+dkOU+URS0A2I6xhoU0cYV0wxPQ2Z+gZqlnpvheGyLsGEaAz0P1CR79uKpvy0AheOpIdOvIxPqoV7q+RtmcUHQ6cRJPJCv5K5M7qIS8YkWu4R7qEfuzvwC6o3pQznqsqgAAAAASUVORK5CYII="
+                                                alt="Яндекс"
+                                                class="hero__review-logo"
+                                                width="32" height="32"
+                                        >
+                                        <span>{% if yandex_data.average_rating %}{{ yandex_data.average_rating }}{% else %} 5.0{% endif %}</span>
+                                        <img
+                                                src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M11.4416%202.9252L12.9083%205.85853C13.1083%206.26686%2013.6416%206.65853%2014.0916%206.73353L16.7499%207.1752C18.4499%207.45853%2018.8499%208.69186%2017.6249%209.90853L15.5583%2011.9752C15.2083%2012.3252%2015.0166%2013.0002%2015.1249%2013.4835L15.7166%2016.0419C16.1833%2018.0669%2015.1083%2018.8502%2013.3166%2017.7919L10.8249%2016.3169C10.3749%2016.0502%209.63326%2016.0502%209.17492%2016.3169L6.68326%2017.7919C4.89992%2018.8502%203.81659%2018.0585%204.28326%2016.0419L4.87492%2013.4835C4.98326%2013.0002%204.79159%2012.3252%204.44159%2011.9752L2.37492%209.90853C1.15826%208.69186%201.54992%207.45853%203.24992%207.1752L5.90826%206.73353C6.34992%206.65853%206.88326%206.26686%207.08326%205.85853L8.54992%202.9252C9.34992%201.33353%2010.6499%201.33353%2011.4416%202.9252Z'%20fill='%23F9CB2D'/%3e%3c/svg%3e"
+                                                alt=""
+                                                class=""
+                                                width="20" height="20"
+                                        >
+                                    </button>
+                                    <button class="review-button" onclick="window.open('https://go.2gis.com/0UnDt', '_blank')">
+                                        <img
+                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATkSURBVHgBrVddTBxVFP7u7GIWijCYYAjLzyBpKz+GIdFUNKYQk9L6oEtsbHyiRH0wMRGqL76UXd9r6YPxoY1tnyq2ZumDKfICTaStNhFMoU1jWoa/CiXCsFhYWJjbcy8sy8LOsAt8yWTv7D33fN89995z7jAkCR5UVXg8PjAcBmM6PRo4V2UnYya1DXr6wXET4XAHazDNZPyybYlv5AmiZrhdjeuESSnml0hMgB2bMLATAXLGGemt1GzGrsD9rH4igFQEyFkrrJuaGvYGBixelygayhbyLq++x+SQvsgn/zVX39wRFwHOuYZH33VjulfDwigQHtvqyp0FeE8AmeVAeuHqf8sh4GknMH0r8ZgYtkQiTsAvw8Ghg1kHtAq1POZ4fmTV6dzgKnnxZzDDwPV7FowZLs30fIYqrwIth17G24GHratj7UTML1RHT8m6gLyrRa2Mwx99ryQRBRkFKNxXgHpvPd7KfZMIgaafltHziCf0fPINBa1HXNA8FL27HzpEw2pj9ZMt6wLyruRpzPXCUCJTIeBabTv+MwtQ98MyzAUOJ6jpQPfnbug5RD5yIT6CcRp4iVgKt3xR0vx2Dr8qb8HKYnLkAuYCpG3fqUJoBwMIRULISsta7QwNxMQsheh4f9vMtKCmLkasGdjM/o/3eqVDu7DbobaUyUi82vEaskmA8FWxtqyVORUoV8vM7LTsEnc4vOJjrsT56Gj+EbnuqZILiDHDtEk/0o7jwj8/YnR+DLem7mw0UTm4T6FMUGvnpCa3BtcHLOwUQkRFdrmDBTusKAqrsuvOSnsxqXW3gzHNUZRZaNtPcddFJtTsDEKROdrV29ar3UBTOIdqL2AW2R7sGHq+goGZQScTVXHqvU2bxlfpaOKIqnxg0LzvaKMwBtuLw43xLplYxJFKFWKM9hLbvPM3wxSJyKBHT9QrkohwcPHEIbmj/35ioWOAy6OZCKpHpGOqCxR6UR/ajasYm3cuTq59x7NrKAq6nYUIYYRNofTl//F+RTpOv5uDWcp2d0biT0fzOwqCTS68/sq/mEAX+ue6cJ7Ov5iEHZiCTjcY76Fmo5OAjev46f5PcPaD0+h/wtcTlK+C0X8unLnfhjODZ5EsLIvflKl4adkacjoNmxHQW7FfOUkpekW+951y4+HSNbTc/RqpYOFZKEcxGgyTyC+nMrBz/DfaZKL+M3kHEOst0m0qoPBfMptMuQnBV5Q25rK+THbw7bWdrXtF9Vs9IU7HTRQgUYiKqCBF7xj9Uw8C36AFUsDEx4bh/bnoHGX9pEWI3a168uQxHX02JktutOIVZhTESCkVR8uxGRnF8PzvKE4vCxwrOGrISEQdrpXlPmxzGRXOhOOLb5/HX8OZMlXr3lieWLRCRDSCifA9TC4OStJJaotfAQ5mtJZNlUTt4zJM3hWNbkaWvBFvDFs5VbREs5lcJMdLo5hYHMBTekQ7bM3aihfkHK46f5nNpVQgOBTUfZovKERsnI0gFM/IfC/CKyFHIltyFxr8B6b6N/6f+MOEruffPz7UPb30WMMeINHMo0hYaRhjxhelf5ZQmglgt+Scn+PhSHUicsm1nQP/A7ox8xU/Y7wRyYIKHF/ml7krrc2OOGaaJPx9qqp40nyUtGpJDH2eoxjR7CkqKl0Babb9jCk9VjjS4a9O7vP8OSFAKqa8USIUAAAAAElFTkSuQmCC"
+                                                alt="2gis"
+                                                class="hero__review-logo"
+                                                width="32" height="32"
+                                        >
+                                        <span>{% if gis_data.average_rating %}{{ gis_data.average_rating }}{% else %} 5.0{% endif %}</span>
+                                        <img
+                                                src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M11.4416%202.9252L12.9083%205.85853C13.1083%206.26686%2013.6416%206.65853%2014.0916%206.73353L16.7499%207.1752C18.4499%207.45853%2018.8499%208.69186%2017.6249%209.90853L15.5583%2011.9752C15.2083%2012.3252%2015.0166%2013.0002%2015.1249%2013.4835L15.7166%2016.0419C16.1833%2018.0669%2015.1083%2018.8502%2013.3166%2017.7919L10.8249%2016.3169C10.3749%2016.0502%209.63326%2016.0502%209.17492%2016.3169L6.68326%2017.7919C4.89992%2018.8502%203.81659%2018.0585%204.28326%2016.0419L4.87492%2013.4835C4.98326%2013.0002%204.79159%2012.3252%204.44159%2011.9752L2.37492%209.90853C1.15826%208.69186%201.54992%207.45853%203.24992%207.1752L5.90826%206.73353C6.34992%206.65853%206.88326%206.26686%207.08326%205.85853L8.54992%202.9252C9.34992%201.33353%2010.6499%201.33353%2011.4416%202.9252Z'%20fill='%23F9CB2D'/%3e%3c/svg%3e"
+                                                alt=""
+                                                class=""
+                                                width="20" height="20"
+                                        >
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="hero__button-wrapper button__wrapper">
+                                <button class="button hero__button modal-open">Заказать уборку</button>
+                                <button class="hero__button--arrow button--arrow modal-open">
+                                    <span class="arrow-container"></span>
+                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                        <path d="M15.5713 8.5H1.42915" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M8.50022 15.5711L15.5713 8.5L8.50022 1.42893" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <div class="hero__splide splide">
+                    <div class="hero__splide-track splide__track">
+                        {% if videos %}
+                            <ul class="splide__list">
+                                {% for video in videos %}
+                                <li class="hero__splide-slide splide__slide">
+                                    <div class="hero__splide-slide-inner">
+                                        <video
+                                                src="{{ video.video.url }}"
+                                                preload="auto"
+                                                muted
+                                                playsinline
+                                                loop
+                                        ></video>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="hero__main-mobile hero__main splide visible-tablet">
+                    <div class="hero__button--mobile button__wrapper">
+                        <button class="hero__button button modal-open">
+                            Заказать уборку
+                        </button>
+                        <button class="hero__button--arrow button--arrow modal-open">
+                            <span class="arrow-container"></span>
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                <path d="M15.5713 8.5H1.42915" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8.50022 15.5711L15.5713 8.5L8.50022 1.42893" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="hero__main-track splide__track">
+                        <ul class="splide__list">
+                            <li class="hero__main-slide splide__slide visible-tablet">
+                                <video autoplay muted loop playsinline class="hero__mobile-video ">
+                                    <source src="{% static 'pages/video/intro_video_compres.mp4' %}" type="video/mp4">
+                                </video>
+                                <div class="hero__overlay visible-tablet"></div>
+                                <div class="hero__body">
+                                    <div class="hero__header-inner">
+                                        <h3 class="hero__header splitting-text" data-splitting>
+                                            С нами у вас всегда <br class="visible-tablet">
+                                            <span class="hero__header-print"></span>
+                                        </h3>
+                                        <p class="hero__subheader">
+                                            Профессиональный клининг для дома и офиса с гарантией качества.
+                                        </p>
+                                    </div>
+                                    <div class="hero__mobile-extra">
+                                        <div class="hero__review">
+                                            <button class="review-button" onclick="window.open('https://www.vl.ru/chistota-dv', '_blank')">
+                                                <img
+                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOLSURBVHgBzVdNaBNBFP5mdjdNqiFJa8WDYosHEQX/LiKICt5b0Zug+IPoQfAggierBxFEqAdRBFFvXgTx76JoqzfRWhHEg9hUemlpm9W0sSa7M7633YRtmzbbJC1+sPmZnZnv/c2b9wRCInkvk3QLboeAsVsAW2iolYf91zY9aQ30adftMaLGY/toyg6zr6g0IXkr06oMdVZAHgkQVgQJc1+6uGSfTqVRjQCsscrjohA4ixqgNbpkhASZwyJlBWCttYE3mDJz7dBIC4W95awhZ5HfzGypKzlDoFVLvOG9Z78Kktdb85koY4mSAOxzXcCnRSMPChHB1mJMlFzAAbfo5Axyh8/l/0XJ9P1YQggXbewKzwJKqk4sMTi3eIL4vs+gzsg7Gn9zmvMAmpYJNC+XyNLYhFMKPFtYaDNB6RUwUCt4U5fIshkX61eZuLArhgPrIhicUHjwLY+XPx2M5ZWXmXwJvNRuKi32iIoJuQI5rbdHXJzcEcW1nQk0kD5n3uZw/Mk4RFQgRo/0SYJcfK+YQsjNwc30DK0qEedIw00tJt6dS6DRFLj8/g8uvsohvkIi3mR4Cs+5ni41E4GjxyZcGRPY3mIgm9foHXQwPK7REJvSIriXQavHSOu77ctxbEMDFL1cc9vGKG2SXDlFPB+5j1Y+BcngpkMUON0DDkwp8PxgHPp8E552xLG6QeCXrciUPvmwi94TCRwl8hwFl3F1BBOkTiQiwhAXkRSJO5my09m8kzmFQh54dCCO9jYLP3672Pcwi/4hB72nktjUbHrzrCujaF5lwFFYMFiADOa556Xv540pAx8PJ7yxD8MONq8wYZH9Gq+PIpY04FZBTrDZBen5ZrBvo40S3yc1kY15Y9tapsjbn2Uh6XxXSc5IS63V5zAz2dTRhESiK+NZ5cuoi6dfCyRI9WeYSzgphe4Ou4CtoWPAidc5HHoxjlSTRPh4KyOAi55iKuaLKHS9N0lRbxl8GmrLYJSKU5LvZQ31YCELo5RwaiXnopW5vdtQurILSwyumL1v/uB7maxwA0sE0v5GsSwrVUTSkp2ocCTrxJ6WFjpLvMUf7A+qUvYuqhDFojTQI0wry9ksooD9iyIEkzvYP7M3+P8aE4ZnCQtb6xGYHHBeGT5HjxiuOaWilQqXIwgPL7fw8a66OZ0lCGVMFNChtKISTlCLJdZiWnuuB7TWfVLIblgI3Z7/A9REe8uT8RSyAAAAAElFTkSuQmCC"
+                                                        alt="VL.ru"
+                                                        class="hero__review-logo"
+                                                        width="32" height="32"
+                                                >
+                                                <span>{% if vl_data.average_rating %}{{ vl_data.average_rating }}{% else %} 5.0{% endif %}</span>
+                                                <img
+                                                        src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M11.4416%202.9252L12.9083%205.85853C13.1083%206.26686%2013.6416%206.65853%2014.0916%206.73353L16.7499%207.1752C18.4499%207.45853%2018.8499%208.69186%2017.6249%209.90853L15.5583%2011.9752C15.2083%2012.3252%2015.0166%2013.0002%2015.1249%2013.4835L15.7166%2016.0419C16.1833%2018.0669%2015.1083%2018.8502%2013.3166%2017.7919L10.8249%2016.3169C10.3749%2016.0502%209.63326%2016.0502%209.17492%2016.3169L6.68326%2017.7919C4.89992%2018.8502%203.81659%2018.0585%204.28326%2016.0419L4.87492%2013.4835C4.98326%2013.0002%204.79159%2012.3252%204.44159%2011.9752L2.37492%209.90853C1.15826%208.69186%201.54992%207.45853%203.24992%207.1752L5.90826%206.73353C6.34992%206.65853%206.88326%206.26686%207.08326%205.85853L8.54992%202.9252C9.34992%201.33353%2010.6499%201.33353%2011.4416%202.9252Z'%20fill='%23F9CB2D'/%3e%3c/svg%3e"
+                                                        alt=""
+                                                        class="hidden-tablet"
+                                                        width="20" height="20"
+                                                >
+                                            </button>
+                                            <button class="review-button" onclick="window.open('https://yandex.ru/maps/-/CHWKmQ7K', '_blank')">
+                                                <img
+                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAI6SURBVHgB7ZexbhNBEIb/2dhFpIBSunAk0yPFJUiWODeQAgmK0CPxAMAT4PACgEQJEj0uUkY0uQIJSjd0SDiQwqUF6Y67YWbB512T892R87nhl07y3u7q/2Z2dqwjLCjqtQMY3DVEdxjooAIReMSgUUTRwWY4Gftzf8TB9naSXHrChEdYoYjx3JgfBxROpymANeetY6HsogZpRgyd9RXC6AsbeU3mKvVSTwvDQasTc/ML1iAm7ps4aQ6wLiW22Hk3a56617ARfk0fuv8YeaK9e/6eVjt7rdw0s+zsefRRng/p2Ow/ALYuYymAA2n3T06XLe8Y5IjfPJsPxJwUIsu8d9OLmIevkKd8gIUs0N5+5loPbvIN/P4dLgxgIZwsUGvH1sZfksipez0dJm7mLgwgWYBzlucVo/dOoz8aojIAVTJ8PTeTSL0sSPRGqt8DLqjCAHz0Fjj7PodwIqbeLX9twfSXAlDzrCy4xaegOVfPUwMlxArg9gJJu/03E8OZaZnoVfTzxg6X2iCpN07649tXvaMpq+JHMJPWggu0pDGtBEBT7TaYIu25UgAL4bZYbc8Lt2D1ANqeP39Kx+d2xlUCWLmFJ+25foCK9B9AAPgEaxLJx0qDGYdEeIiS4pdPwbP7/4+dkOU+URS0A2I6xhoU0cYV0wxPQ2Z+gZqlnpvheGyLsGEaAz0P1CR79uKpvy0AheOpIdOvIxPqoV7q+RtmcUHQ6cRJPJCv5K5M7qIS8YkWu4R7qEfuzvwC6o3pQznqsqgAAAAASUVORK5CYII="
+                                                        alt="Яндекс"
+                                                        class="hero__review-logo"
+                                                        width="32" height="32"
+                                                >
+                                                <span>{% if yandex_data.average_rating %}{{ yandex_data.average_rating }}{% else %} 5.0{% endif %}</span>
+                                                <img
+                                                        src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M11.4416%202.9252L12.9083%205.85853C13.1083%206.26686%2013.6416%206.65853%2014.0916%206.73353L16.7499%207.1752C18.4499%207.45853%2018.8499%208.69186%2017.6249%209.90853L15.5583%2011.9752C15.2083%2012.3252%2015.0166%2013.0002%2015.1249%2013.4835L15.7166%2016.0419C16.1833%2018.0669%2015.1083%2018.8502%2013.3166%2017.7919L10.8249%2016.3169C10.3749%2016.0502%209.63326%2016.0502%209.17492%2016.3169L6.68326%2017.7919C4.89992%2018.8502%203.81659%2018.0585%204.28326%2016.0419L4.87492%2013.4835C4.98326%2013.0002%204.79159%2012.3252%204.44159%2011.9752L2.37492%209.90853C1.15826%208.69186%201.54992%207.45853%203.24992%207.1752L5.90826%206.73353C6.34992%206.65853%206.88326%206.26686%207.08326%205.85853L8.54992%202.9252C9.34992%201.33353%2010.6499%201.33353%2011.4416%202.9252Z'%20fill='%23F9CB2D'/%3e%3c/svg%3e"
+                                                        alt=""
+                                                        class="hidden-tablet"
+                                                        width="20" height="20"
+                                                >
+                                            </button>
+                                            <button class="review-button" onclick="window.open('https://go.2gis.com/0UnDt', '_blank')">
+                                                <img
+                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATkSURBVHgBrVddTBxVFP7u7GIWijCYYAjLzyBpKz+GIdFUNKYQk9L6oEtsbHyiRH0wMRGqL76UXd9r6YPxoY1tnyq2ZumDKfICTaStNhFMoU1jWoa/CiXCsFhYWJjbcy8sy8LOsAt8yWTv7D33fN89995z7jAkCR5UVXg8PjAcBmM6PRo4V2UnYya1DXr6wXET4XAHazDNZPyybYlv5AmiZrhdjeuESSnml0hMgB2bMLATAXLGGemt1GzGrsD9rH4igFQEyFkrrJuaGvYGBixelygayhbyLq++x+SQvsgn/zVX39wRFwHOuYZH33VjulfDwigQHtvqyp0FeE8AmeVAeuHqf8sh4GknMH0r8ZgYtkQiTsAvw8Ghg1kHtAq1POZ4fmTV6dzgKnnxZzDDwPV7FowZLs30fIYqrwIth17G24GHratj7UTML1RHT8m6gLyrRa2Mwx99ryQRBRkFKNxXgHpvPd7KfZMIgaafltHziCf0fPINBa1HXNA8FL27HzpEw2pj9ZMt6wLyruRpzPXCUCJTIeBabTv+MwtQ98MyzAUOJ6jpQPfnbug5RD5yIT6CcRp4iVgKt3xR0vx2Dr8qb8HKYnLkAuYCpG3fqUJoBwMIRULISsta7QwNxMQsheh4f9vMtKCmLkasGdjM/o/3eqVDu7DbobaUyUi82vEaskmA8FWxtqyVORUoV8vM7LTsEnc4vOJjrsT56Gj+EbnuqZILiDHDtEk/0o7jwj8/YnR+DLem7mw0UTm4T6FMUGvnpCa3BtcHLOwUQkRFdrmDBTusKAqrsuvOSnsxqXW3gzHNUZRZaNtPcddFJtTsDEKROdrV29ar3UBTOIdqL2AW2R7sGHq+goGZQScTVXHqvU2bxlfpaOKIqnxg0LzvaKMwBtuLw43xLplYxJFKFWKM9hLbvPM3wxSJyKBHT9QrkohwcPHEIbmj/35ioWOAy6OZCKpHpGOqCxR6UR/ajasYm3cuTq59x7NrKAq6nYUIYYRNofTl//F+RTpOv5uDWcp2d0biT0fzOwqCTS68/sq/mEAX+ue6cJ7Ov5iEHZiCTjcY76Fmo5OAjev46f5PcPaD0+h/wtcTlK+C0X8unLnfhjODZ5EsLIvflKl4adkacjoNmxHQW7FfOUkpekW+951y4+HSNbTc/RqpYOFZKEcxGgyTyC+nMrBz/DfaZKL+M3kHEOst0m0qoPBfMptMuQnBV5Q25rK+THbw7bWdrXtF9Vs9IU7HTRQgUYiKqCBF7xj9Uw8C36AFUsDEx4bh/bnoHGX9pEWI3a168uQxHX02JktutOIVZhTESCkVR8uxGRnF8PzvKE4vCxwrOGrISEQdrpXlPmxzGRXOhOOLb5/HX8OZMlXr3lieWLRCRDSCifA9TC4OStJJaotfAQ5mtJZNlUTt4zJM3hWNbkaWvBFvDFs5VbREs5lcJMdLo5hYHMBTekQ7bM3aihfkHK46f5nNpVQgOBTUfZovKERsnI0gFM/IfC/CKyFHIltyFxr8B6b6N/6f+MOEruffPz7UPb30WMMeINHMo0hYaRhjxhelf5ZQmglgt+Scn+PhSHUicsm1nQP/A7ox8xU/Y7wRyYIKHF/ml7krrc2OOGaaJPx9qqp40nyUtGpJDH2eoxjR7CkqKl0Babb9jCk9VjjS4a9O7vP8OSFAKqa8USIUAAAAAElFTkSuQmCC"
+                                                        alt="2gis"
+                                                        class="hero__review-logo"
+                                                        width="32" height="32"
+                                                >
+                                                <span>{% if gis_data.average_rating %}{{ gis_data.average_rating }}{% else %} 5.0{% endif %}</span>
+                                                <img
+                                                        src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M11.4416%202.9252L12.9083%205.85853C13.1083%206.26686%2013.6416%206.65853%2014.0916%206.73353L16.7499%207.1752C18.4499%207.45853%2018.8499%208.69186%2017.6249%209.90853L15.5583%2011.9752C15.2083%2012.3252%2015.0166%2013.0002%2015.1249%2013.4835L15.7166%2016.0419C16.1833%2018.0669%2015.1083%2018.8502%2013.3166%2017.7919L10.8249%2016.3169C10.3749%2016.0502%209.63326%2016.0502%209.17492%2016.3169L6.68326%2017.7919C4.89992%2018.8502%203.81659%2018.0585%204.28326%2016.0419L4.87492%2013.4835C4.98326%2013.0002%204.79159%2012.3252%204.44159%2011.9752L2.37492%209.90853C1.15826%208.69186%201.54992%207.45853%203.24992%207.1752L5.90826%206.73353C6.34992%206.65853%206.88326%206.26686%207.08326%205.85853L8.54992%202.9252C9.34992%201.33353%2010.6499%201.33353%2011.4416%202.9252Z'%20fill='%23F9CB2D'/%3e%3c/svg%3e"
+                                                        alt=""
+                                                        class="hidden-tablet"
+                                                        width="20" height="20"
+                                                >
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="hero__main-slide splide__slide">
+                                <div class="hero__advantages-mobile">
+                                    <div class="hero__advantages-item">
+                                        <p class="hero__advantages-title">Успех гарантирован</p>
+                                        <div class="hero__advantages-info">
+                                            <p class="hero__advantages-value"><span>+{{ about_main.cnt_people }}</span> чел</p>
+                                            <p class="hero__advantages-label">в команде</p>
+                                        </div>
+                                    </div>
+                                    <div class="hero__advantages-item">
+                                        <p class="hero__advantages-title">Работаем с 2019 г</p>
+                                        <div class="hero__advantages-info">
+                                            <p class="hero__advantages-value"><span>+{{ about_main.cnt_year }}</span> лет</p>
+                                            <p class="hero__advantages-label">В этой сфере</p>
+                                        </div>
+                                    </div>
+                                    <div class="hero__advantages-item">
+                                        <p class="hero__advantages-title">В надежных руках</p>
+                                        <div class="hero__advantages-info">
+                                            <p class="hero__advantages-value"><span>+{{ about_main.cnt_square }}к</span> м2</p>
+                                            <p class="hero__advantages-label">Вычищаем/мес</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <div class="hero__advantages">
+                <div class="hero__advantages-top" >
+                    <h5 class="hero__advantages-header">Клининговая компания №1 в Приморском крае</h5>
+                    <div class="hero__advantages-items" >
+                        <div class="hero__advantages-item">
+                            <div class="hero__advantages-info">
+                                <p class="hero__advantages-value"><span>{{ about_main.cnt_people }}</span> чел</p>
+                                <p class="hero__advantages-label">в команде</p>
+                            </div>
+                            <div class="hero__advantages-tag">
+                                <p class="hero__advantages-title">Успех гарантирован</p>
+                            </div>
+                        </div>
+                        <div class="hero__advantages-item">
+                            <div class="hero__advantages-info">
+                                <p class="hero__advantages-value"><span>{{ about_main.cnt_year }}</span> лет</p>
+                                <p class="hero__advantages-label">Опта в этой сфере</p>
+                            </div>
+                            <div class="hero__advantages-tag">
+                                <p class="hero__advantages-title">Работаем с 2019 г</p>
+                            </div>
+                        </div>
+                        <div class="hero__advantages-item">
+                            <div class="hero__advantages-info">
+                                <p class="hero__advantages-value"><span>{{ about_main.cnt_square }}к</span> м2</p>
+                                <p class="hero__advantages-label">Вычищаем в месяц</p>
+                            </div>
+                            <div class="hero__advantages-tag">
+                                <p class="hero__advantages-title">В надежных руках</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero__advantages-action">
+                        <button class="hero__advantages-button button--white modal-open">
+                            Рассчитать стоимость
+                        </button>
+                        <div class="hero__advantages-contacts">
+                            <div class="hero__advantages__contacts-item">
+                                <img
+                                        src="data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.974 50H26.0559C37.3579 50 43.01 50 46.52 46.49C50.03 42.98 50 37.3301 50 26.0559V23.944C50 12.672 50 7.02002 46.52 3.51001C43.04 1.00583e-05 37.3579 0 26.0559 0H23.974C12.67 0 7.01999 1.00583e-05 3.50998 3.51001C-2.23517e-06 7.02002 0 12.668 0 23.944V26.0559C0 37.3301 -2.23517e-06 42.98 3.50998 46.49C7.01999 50 12.67 50 23.974 50Z' fill='url(%23paint0_linear_2138_3963)'/%3E%3Cpath d='M17.9594 8.11772C16.1506 8.2031 14.9151 8.49282 13.8355 8.91585C12.718 9.35152 11.7706 9.9354 10.8282 10.8817C9.88466 11.8285 9.30521 12.7776 8.87285 13.8963C8.45424 14.9786 8.17057 16.2146 8.09069 18.0246C8.01139 19.8378 7.9932 20.4162 8.00204 25.0325C8.01084 29.6483 8.03122 30.2277 8.11769 32.0415C8.20415 33.8498 8.4928 35.0847 8.91582 36.1649C9.35205 37.2825 9.93532 38.2293 10.8821 39.1723C11.8284 40.1153 12.778 40.6942 13.8972 41.1271C14.9785 41.5452 16.215 41.8299 18.0244 41.9093C19.8376 41.9891 20.4165 42.0067 25.0317 41.9979C29.649 41.9891 30.228 41.9687 32.0412 41.8828C33.85 41.7963 35.0843 41.5066 36.165 41.0847C37.2826 40.6474 38.23 40.0652 39.1724 39.1183C40.1148 38.172 40.6942 37.2224 41.1266 36.1032C41.5453 35.0219 41.83 33.7854 41.9088 31.9771C41.9881 30.1627 42.0068 29.5833 41.998 24.9675C41.9892 20.3512 41.9683 19.7728 41.8823 17.9601C41.7964 16.1502 41.5067 14.9158 41.0842 13.8351C40.6475 12.7175 40.0647 11.7712 39.1184 10.8277C38.1721 9.88527 37.2226 9.30471 36.1033 8.87344C35.0216 8.45482 33.7856 8.16949 31.9762 8.09128C30.1629 8.01086 29.5841 7.99325 24.9672 8.00206C20.3515 8.01087 19.7727 8.0307 17.9594 8.11772ZM18.1577 38.8495C16.5003 38.7774 15.6003 38.502 15.0005 38.2712C14.2062 37.9638 13.6395 37.5953 13.043 37.0032C12.4475 36.4089 12.0779 35.8438 11.7678 35.0511C11.5348 34.4513 11.2545 33.5524 11.1768 31.895C11.0926 30.1032 11.0733 29.5656 11.065 25.0264C11.0562 20.4883 11.0727 19.9507 11.151 18.1573C11.222 16.501 11.4991 15.5999 11.7293 15.0006C12.0366 14.2052 12.404 13.6396 12.9972 13.0431C13.5915 12.4465 14.1567 12.078 14.9498 11.7679C15.5491 11.5338 16.448 11.2557 18.1048 11.1769C19.8977 11.0921 20.4347 11.0739 24.9727 11.0651C29.5119 11.0563 30.0495 11.0723 31.8429 11.151C33.4991 11.2232 34.4002 11.4975 34.999 11.7294C35.7938 12.0367 36.3605 12.403 36.9565 12.9973C37.5525 13.5917 37.9221 14.1557 38.2322 14.9505C38.4663 15.5481 38.7444 16.4481 38.8226 18.1044C38.908 19.8973 38.9273 20.4349 38.9355 24.973C38.9443 29.5122 38.9278 30.0498 38.8491 31.8421C38.7769 33.4995 38.5021 34.4001 38.2707 35.0005C37.9634 35.7942 37.596 36.361 37.0022 36.9575C36.4085 37.5518 35.8434 37.9225 35.0496 38.2326C34.4515 38.4661 33.5515 38.7449 31.8958 38.8236C30.1029 38.9079 29.5659 38.9272 25.0262 38.9354C20.4881 38.9443 19.9511 38.9272 18.1577 38.8495ZM32.0164 15.9128C32.0186 17.0386 32.934 17.9502 34.0599 17.948C35.1862 17.9458 36.0978 17.0309 36.0962 15.9051C36.094 14.7792 35.1785 13.8671 34.0522 13.8693C32.9258 13.8715 32.0142 14.7869 32.0164 15.9128ZM16.2712 25.0165C16.2806 29.8377 20.1962 33.7375 25.0163 33.7281C29.8369 33.7187 33.7387 29.8041 33.7294 24.9829C33.72 20.1634 29.8038 16.2614 24.9827 16.2708C20.1626 16.2802 16.2618 20.1964 16.2712 25.0165ZM19.3331 25.0105C19.3276 21.8813 21.8602 19.3393 24.9887 19.3338C28.1178 19.3278 30.6603 21.8593 30.6664 24.989C30.6725 28.1187 28.1399 30.6601 25.0102 30.6662C21.8817 30.6722 19.3391 28.1402 19.3331 25.0105Z' fill='white'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_2138_3963' x1='25' y1='0' x2='25' y2='50' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23C51EA9'/%3E%3Cstop offset='0.293269' stop-color='%23D22097'/%3E%3Cstop offset='0.698907' stop-color='%23E75D5A'/%3E%3Cstop offset='1' stop-color='%23F2A328'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E "
+                                        alt=""
+                                        class=""
+                                        width="50" height="50"
+                                >
+                            </div>
+                            <div class="hero__advantages__contacts-item">
+                                <img
+                                        src="data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.974 50H26.0559C37.3579 50 43.01 50 46.52 46.49C50.03 42.98 50 37.3301 50 26.0559V23.944C50 12.672 50 7.02002 46.52 3.51001C43.04 1.00583e-05 37.3579 0 26.0559 0H23.974C12.67 0 7.01999 1.00583e-05 3.50998 3.51001C-2.23517e-06 7.02002 0 12.668 0 23.944V26.0559C0 37.3301 -2.23517e-06 42.98 3.50998 46.49C7.01999 50 12.67 50 23.974 50Z' fill='%230077FF'/%3E%3Cpath d='M26.8315 36.0495C15.5575 36.0495 8.71548 28.2275 8.44946 15.2295H14.1595C14.3375 24.7775 18.6815 28.8295 22.0115 29.6555V15.2295H27.4855V23.4675C30.6975 23.1115 34.0576 19.3635 35.1894 15.2295H40.5715C39.7094 20.3155 36.0515 24.0635 33.4636 25.6096C36.0515 26.8596 40.2155 30.1315 41.8215 36.0495H35.9035C34.6535 32.0935 31.5896 29.0295 27.4855 28.6135V36.0495H26.8315Z' fill='white'/%3E%3C/svg%3E "
+                                        alt=""
+                                        class=""
+                                        width="50" height="50"
+                                >
+                            </div>
+                            <div class="hero__advantages__contacts-item">
+                                <img
+                                        src="data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z' fill='url(%23paint0_linear_2138_3970)'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.3169 24.7359C18.6049 21.5606 23.4647 19.4673 25.8963 18.4559C32.8391 15.5682 34.2817 15.0665 35.222 15.05C35.4288 15.0463 35.8912 15.0976 36.1908 15.3406C36.4437 15.5459 36.5133 15.8231 36.5466 16.0177C36.5799 16.2122 36.6213 16.6555 36.5884 17.0018C36.2121 20.9549 34.5842 30.548 33.756 34.9756C33.4055 36.849 32.7155 37.4772 32.0475 37.5387C30.5957 37.6723 29.4932 36.5792 28.0871 35.6575C25.8868 34.2151 24.6437 33.3173 22.5079 31.9098C20.0397 30.2832 21.6397 29.3893 23.0464 27.9282C23.4145 27.5459 29.8112 21.7276 29.935 21.1998C29.9505 21.1338 29.9649 20.8878 29.8187 20.7578C29.6725 20.6279 29.4568 20.6723 29.3011 20.7077C29.0804 20.7578 25.5653 23.0811 18.7559 27.6776C17.7582 28.3627 16.8545 28.6965 16.0448 28.6791C15.1521 28.6598 13.4351 28.1743 12.1586 27.7594C10.593 27.2505 9.34866 26.9814 9.45702 26.1171C9.51345 25.6669 10.1334 25.2065 11.3169 24.7359Z' fill='white'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_2138_3970' x1='2500' y1='0' x2='2500' y2='4962.92' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%232AABEE'/%3E%3Cstop offset='1' stop-color='%23229ED9'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E "
+                                        alt=""
+                                        class=""
+                                        width="50" height="50"
+                                >
+                            </div>
+                            <div class="hero__advantages__contacts-item">
+                                <img
+                                        src="data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z' fill='%232CB742'/%3E%3Cpath d='M25.5 11C18.0446 11 12 17.0446 12 24.5C12 27.0326 12.7114 29.3938 13.9248 31.4192L12.1208 38L18.8423 36.2356C20.808 37.3532 23.0773 38 25.5 38C32.9554 38 39 31.9554 39 24.5C39 17.0446 32.9554 11 25.5 11ZM20.8792 18.2026C21.0985 18.2026 21.3239 18.2013 21.5186 18.2114C21.7593 18.2171 22.0213 18.2347 22.2722 18.7893C22.5703 19.4486 23.2195 21.1024 23.3027 21.27C23.386 21.4376 23.445 21.6351 23.3291 21.8545C23.2189 22.0795 23.1615 22.2157 22.9995 22.4148C22.8319 22.6083 22.6482 22.8486 22.4963 22.9949C22.3287 23.1625 22.1556 23.3463 22.3491 23.6804C22.5426 24.0145 23.2146 25.1099 24.208 25.9941C25.4849 27.1349 26.5622 27.4855 26.8975 27.6531C27.2327 27.8207 27.4269 27.7946 27.6204 27.5696C27.8195 27.3502 28.4566 26.5975 28.6816 26.2622C28.901 25.927 29.125 25.985 29.4287 26.0952C29.737 26.2055 31.3808 27.0152 31.7161 27.1829C32.0513 27.3505 32.2711 27.4335 32.3555 27.5696C32.4421 27.7102 32.4422 28.3797 32.1643 29.1604C31.8864 29.94 30.5219 30.694 29.9099 30.7468C29.2923 30.8042 28.7159 31.0244 25.8955 29.9141C22.4935 28.5742 20.348 25.0897 20.1804 24.8647C20.0128 24.6454 18.8181 23.0531 18.8181 21.4106C18.8181 19.7625 19.6822 18.9554 19.9849 18.6201C20.2931 18.2849 20.6542 18.2026 20.8792 18.2026Z' fill='white'/%3E%3C/svg%3E "
+                                        alt=""
+                                        class=""
+                                        width="50" height="50"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="about" class="about">
+            <div class="about__inner">
+                <div class="about__header-inner">
+                    <h1 class="about__header">Нас <br class="visible-mobile">выбирают</h1>
+                    <img
+                            src="data:image/svg+xml,%3Csvg width='120' height='68' viewBox='0 0 120 68' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3CforeignObject x='-16' y='-16' width='151.798' height='99.5634'%3E%3Cdiv xmlns='http://www.w3.org/1999/xhtml' style='backdrop-filter:blur(8px);clip-path:url(%23bgblur_0_2138_4763_clip_path);height:100%25;width:100%25'%3E%3C/div%3E%3C/foreignObject%3E%3Cg data-figma-bg-blur-radius='16'%3E%3Crect x='8.64282' width='113.002' height='48.0016' rx='24.0008' transform='rotate(10.3728 8.64282 0)' fill='%23A6CCFF' fill-opacity='0.4'/%3E%3Crect x='9.04462' y='0.581855' width='112.002' height='47.0016' rx='23.5008' transform='rotate(10.3728 9.04462 0.581855)' stroke='white' stroke-opacity='0.16'/%3E%3Cg clip-path='url(%23clip1_2138_4763)'%3E%3Cpath d='M24.4039 43.5505L25.7146 43.7903C32.8297 45.0923 36.3879 45.7434 39.002 43.9381C41.6161 42.1327 42.2481 38.5724 43.5469 31.4748L43.7902 30.1453C45.0887 23.049 45.7399 19.4908 43.9534 16.8802C42.167 14.2696 38.5898 13.615 31.4747 12.313L30.164 12.0731C23.0476 10.7709 19.4907 10.12 16.8766 11.9254C14.2626 13.7307 13.6119 17.2864 12.3129 24.3851L12.0696 25.7147C10.7708 32.8123 10.1199 36.3692 11.9252 38.9832C13.7306 41.5973 17.2875 42.2482 24.4039 43.5505Z' fill='url(%23paint0_linear_2138_4763)'/%3E%3Cpath d='M25.4429 16.4907C24.2943 16.3361 23.4831 16.3762 22.7548 16.5181C22.001 16.6637 21.3373 16.9221 20.635 17.4093C19.9319 17.8966 19.4578 18.4273 19.0568 19.0818C18.6685 19.715 18.3476 20.4604 18.0888 21.5907C17.8299 22.7231 17.7519 23.0851 17.2256 25.9923C16.6994 28.8991 16.6455 29.2663 16.491 30.4181C16.3371 31.5665 16.3765 32.3772 16.5184 33.1059C16.6643 33.8597 16.9224 34.523 17.4098 35.2257C17.8969 35.9284 18.428 36.4022 19.0828 36.8037C19.7153 37.1915 20.4609 37.5132 21.5909 37.7716C22.7232 38.0307 23.0856 38.1085 25.9921 38.6347C28.9 39.161 29.2668 39.2149 30.4182 39.3697C31.5669 39.5236 32.3773 39.4834 33.1063 39.3423C33.8602 39.1957 34.5237 38.9384 35.2261 38.4508C35.9284 37.9637 36.4026 37.4326 36.8037 36.7778C37.1918 36.1454 37.5135 35.3997 37.7714 34.2703C38.0304 33.1373 38.1089 32.7746 38.6351 29.8678C39.1614 26.9606 39.2149 26.5941 39.3696 25.443C39.524 24.2936 39.4838 23.4832 39.3423 22.7542C39.1961 22.0003 38.9383 21.3374 38.4512 20.6344C37.9641 19.9321 37.4332 19.4572 36.7783 19.0567C36.1455 18.6686 35.4002 18.3466 34.2701 18.0889C33.1379 17.8294 32.7755 17.7516 29.8679 17.2253C26.9611 16.6991 26.5944 16.6449 25.4429 16.4907ZM22.0273 35.8607C20.9922 35.6243 20.4574 35.3472 20.1063 35.1329C19.6417 34.8479 19.3274 34.5506 19.02 34.1091C18.7137 33.6664 18.5461 33.268 18.4422 32.7333C18.3646 32.3288 18.2917 31.7306 18.4337 30.6783C18.5871 29.5406 18.6369 29.1999 19.1546 26.3413C19.6719 23.4834 19.7442 23.1468 20 22.0268C20.2356 20.9923 20.5138 20.4569 20.7278 20.1061C21.0129 19.6408 21.3094 19.327 21.7515 19.0198C22.1944 18.7127 22.5926 18.5459 23.1277 18.442C23.5319 18.3637 24.1299 18.2921 25.182 18.4334C26.3204 18.5865 26.6606 18.637 29.5185 19.1542C32.3772 19.6716 32.7137 19.7436 33.8337 19.9998C34.8681 20.236 35.4038 20.5125 35.754 20.7275C36.2189 21.0125 36.5336 21.3084 36.8403 21.7512C37.147 22.194 37.3147 22.5917 37.4184 23.1278C37.4969 23.531 37.5683 24.1296 37.4267 25.1813C37.2739 26.3199 37.2242 26.6605 36.7065 29.5184C36.1892 32.3771 36.1168 32.7136 35.8608 33.8329C35.6244 34.868 35.3476 35.4033 35.1328 35.7546C34.8479 36.2189 34.5513 36.5334 34.1088 36.8405C33.6665 37.1462 33.2681 37.3145 32.7326 37.4183C32.3292 37.4964 31.7305 37.5682 30.679 37.427C29.5407 37.2735 29.2003 37.2238 26.3414 36.706C23.4835 36.1888 23.1474 36.1162 22.0273 35.8607ZM33.3944 23.0175C33.2661 23.7265 33.7373 24.4059 34.4464 24.5342C35.1557 24.6626 35.835 24.1916 35.9637 23.4826C36.092 22.7736 35.6208 22.0939 34.9114 21.9655C34.202 21.8372 33.5227 22.3085 33.3944 23.0175ZM22.4333 26.9348C21.8838 29.9711 23.8996 32.8772 26.9351 33.4266C29.971 33.9761 32.8783 31.9612 33.4279 28.9249C33.9772 25.8897 31.9613 22.9821 28.9251 22.4326C25.8895 21.8832 22.9827 23.8993 22.4333 26.9348ZM24.3616 27.2838C24.7186 25.3132 26.6058 24.0047 28.576 24.3616C30.5466 24.7183 31.8556 26.6049 31.4989 28.5759C31.1422 30.5468 29.255 31.855 27.284 31.4983C25.3138 31.1417 24.0048 29.2547 24.3616 27.2838Z' fill='white'/%3E%3C/g%3E%3Cpath d='M51.7369 38.3874L54.2576 24.6162L57.2086 25.1564L54.6879 38.9276L51.7369 38.3874ZM57.2508 39.3967L59.7715 25.6255L63.6078 26.3277L67.2354 37.0562L67.4321 37.0922L67.5414 35.384L69.0179 27.318L71.9688 27.8582L69.4481 41.6294L65.6118 40.9271L61.9843 30.1987L61.7875 30.1626L61.6782 31.8709L60.2017 39.9369L57.2508 39.3967ZM72.0109 37.6254L75.0603 38.1835C75.1063 38.5986 75.2328 38.981 75.4399 39.3306C75.8922 40.1183 76.6888 40.6165 77.8299 40.8254C79.5349 41.1375 80.4834 40.7689 80.6754 39.7197C80.7235 39.4573 80.6749 39.2045 80.5297 38.961C80.3976 38.7199 80.1558 38.4859 79.8042 38.2589C79.4658 38.0343 79.1279 37.8437 78.7906 37.6871C78.4688 37.5197 78.0457 37.3135 77.5213 37.0684C77.445 37.0409 77.3818 37.0158 77.3317 36.993C77.2948 36.9727 77.2382 36.9488 77.1619 36.9213C77.1011 36.8831 77.0457 36.8526 76.9956 36.8299C74.3876 35.6747 73.2649 34.107 73.6274 32.1265C73.8435 30.9462 74.5046 30.037 75.6109 29.3991C76.7327 28.7505 78.1002 28.5738 79.7134 28.8691C81.8119 29.2532 83.2692 30.2519 84.0854 31.8653C84.4161 32.5764 84.6024 33.3357 84.6444 34.1431L81.595 33.585C81.5668 33.2951 81.4639 33.0052 81.2866 32.7152C80.8842 32.0994 80.1978 31.7026 79.2273 31.525C78.4797 31.3881 77.8893 31.4292 77.4561 31.6481C77.0254 31.8539 76.7716 32.1666 76.6948 32.5863C76.5555 33.347 77.3155 34.0826 78.9747 34.7929C79.4014 34.9795 79.6649 35.0955 79.765 35.1409C79.8782 35.1887 80.1339 35.3101 80.532 35.5049C80.9432 35.7022 81.2137 35.8534 81.3436 35.9585C81.489 36.0529 81.7243 36.2112 82.0496 36.4334C82.3904 36.6449 82.621 36.8294 82.7412 36.9869C82.8746 37.1469 83.0389 37.36 83.2342 37.6261C83.445 37.8816 83.5824 38.1304 83.6465 38.3726C83.7107 38.6148 83.7544 38.8939 83.7779 39.2099C83.8169 39.5153 83.8052 39.8384 83.7428 40.1794C83.5195 41.3992 82.8392 42.3387 81.7019 42.9981C80.567 43.6443 79.1143 43.8053 77.3437 43.4812C75.0092 43.0539 73.4416 41.9537 72.6411 40.1806C72.2545 39.405 72.0444 38.5532 72.0109 37.6254ZM85.9275 33.2597L86.4317 30.5055L98.2356 32.6661L97.7314 35.4204L93.305 34.6101L91.2884 45.6271L88.3374 45.0869L90.354 34.07L85.9275 33.2597Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='bgblur_0_2138_4763_clip_path' transform='translate(16 16)'%3E%3Crect x='8.64282' width='113.002' height='48.0016' rx='24.0008' transform='rotate(10.3728 8.64282 0)'/%3E%3C/clipPath%3E%3ClinearGradient id='paint0_linear_2138_4763' x1='30.8099' y1='12.1913' x2='25.0498' y2='43.6686' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23C51EA9'/%3E%3Cstop offset='0.293269' stop-color='%23D22097'/%3E%3Cstop offset='0.698907' stop-color='%23E75D5A'/%3E%3Cstop offset='1' stop-color='%23F2A328'/%3E%3C/linearGradient%3E%3CclipPath id='clip1_2138_4763'%3E%3Crect x='15.0713' y='9.31128' width='32' height='32' rx='16' transform='rotate(10.37 15.0713 9.31128)' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A"
+                            alt="Instagram"
+                            class="about__inst hidden-mobile"
+                            width="116" height="48"
+                            
+                    >
+                    <img
+                            src="data:image/svg+xml,%3Csvg width='104' height='67' viewBox='0 0 104 67' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3CforeignObject x='-16' y='-16' width='135.699' height='98.3478'%3E%3Cdiv xmlns='http://www.w3.org/1999/xhtml' style='backdrop-filter:blur(8px);clip-path:url(%23bgblur_0_2138_4776_clip_path);height:100%25;width:100%25'%3E%3C/div%3E%3C/foreignObject%3E%3Cg data-figma-bg-blur-radius='16'%3E%3Cpath d='M4.83276 42.8394C2.1637 29.8561 10.5251 17.1674 23.5084 14.4983L70.5252 4.83279C83.5085 2.16373 96.1973 10.5251 98.8663 23.5084C101.535 36.4917 93.174 49.1805 80.1907 51.8496L33.1739 61.5151C20.1906 64.1841 7.50181 55.8228 4.83276 42.8394Z' fill='%23A6CCFF' fill-opacity='0.4'/%3E%3Cpath d='M23.6091 14.9881L70.6259 5.32255C83.3387 2.70909 95.7631 10.8963 98.3766 23.6091C100.99 36.3219 92.8028 48.7464 80.09 51.3598L33.0732 61.0253C20.3604 63.6388 7.93597 55.4516 5.32251 42.7388C2.70906 30.0259 10.8962 17.6015 23.6091 14.9881Z' stroke='white' stroke-opacity='0.16'/%3E%3Cpath d='M31.563 53.679C40.2185 51.8996 45.7928 43.4404 44.0134 34.7849C42.234 26.1293 33.7748 20.5551 25.1193 22.3344C16.4637 24.1138 10.8895 32.573 12.6689 41.2285C14.4482 49.8841 22.9074 55.4583 31.563 53.679Z' fill='url(%23paint0_linear_2138_4776)'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M19.7291 39.6047C23.8887 36.6749 26.6655 34.7363 28.0595 33.7889C32.0397 31.0839 32.8794 30.5835 33.4668 30.4519C33.5959 30.423 33.8924 30.3955 34.1115 30.5093C34.2965 30.6053 34.3759 30.7702 34.4218 30.8878C34.4678 31.0055 34.5509 31.2781 34.5749 31.4994C34.8485 34.0261 35.0642 40.2497 35.1156 43.132C35.1374 44.3516 34.7857 44.8343 34.3749 44.959C33.482 45.2298 32.65 44.6867 31.6497 44.29C30.0845 43.6694 29.1895 43.2668 27.6692 42.6597C25.9123 41.9581 26.8001 41.1915 27.4937 40.0943C27.6752 39.8071 30.9353 35.3354 30.9449 34.9885C30.9461 34.9452 30.9234 34.7891 30.8151 34.7264C30.7067 34.6638 30.5772 34.7195 30.4841 34.7617C30.3522 34.8215 28.4481 36.731 24.7717 40.4901C24.2345 41.0482 23.711 41.3739 23.2012 41.4673C22.6391 41.5702 21.5001 41.4872 20.6465 41.3916C19.5994 41.2743 18.7847 41.266 18.7412 40.7102C18.7186 40.4207 19.0479 40.0522 19.7291 39.6047Z' fill='white'/%3E%3Cpath d='M51.1997 29.0196L50.6358 26.277L62.39 23.8606L62.9539 26.6033L58.546 27.5094L60.8013 38.48L57.8628 39.0841L55.6075 28.1135L51.1997 29.0196ZM67.8664 35.292C66.1713 34.1976 65.1103 32.6121 64.6835 30.5355C64.2566 28.4589 64.6074 26.59 65.736 24.9287C66.875 23.2517 68.5415 22.1877 70.7356 21.7366C73.191 21.2318 75.2592 21.6914 76.9404 23.1154C77.6969 23.7494 78.2958 24.5111 78.7373 25.4004L75.7008 26.0246C75.4424 25.6285 75.1007 25.2904 74.6755 25.0103C73.7308 24.3878 72.6055 24.2108 71.2995 24.4792C69.9934 24.7477 69.0149 25.3845 68.364 26.3895C67.7234 27.3787 67.5414 28.546 67.8179 29.8912C68.0998 31.2625 68.7237 32.2776 69.6895 32.9367C70.6657 33.5799 71.8199 33.7646 73.152 33.4908C74.5233 33.2089 75.5043 32.5512 76.095 31.5178C76.3774 31.0377 76.5539 30.5386 76.6243 30.0205L74.4694 30.4635L73.966 28.0147L80.7247 26.6253L81.2281 29.0741L79.6608 29.3963C79.5803 30.461 79.3149 31.4548 78.8649 32.3776C77.8614 34.4488 76.145 35.7341 73.7158 36.2334C71.5217 36.6845 69.5719 36.3707 67.8664 35.292Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='bgblur_0_2138_4776_clip_path' transform='translate(16 16)'%3E%3Cpath d='M4.83276 42.8394C2.1637 29.8561 10.5251 17.1674 23.5084 14.4983L70.5252 4.83279C83.5085 2.16373 96.1973 10.5251 98.8663 23.5084C101.535 36.4917 93.174 49.1805 80.1907 51.8496L33.1739 61.5151C20.1906 64.1841 7.50181 55.8228 4.83276 42.8394Z'/%3E%3C/clipPath%3E%3ClinearGradient id='paint0_linear_2138_4776' x1='1576.67' y1='-296.627' x2='2216.26' y2='2814.58' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%232AABEE'/%3E%3Cstop offset='1' stop-color='%23229ED9'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E "
+                            alt="Telegram"
+                            class="about__tg hidden-mobile"
+                            width="111" height="48"
+                    >
+                    <img
+                            src="data:image/svg+xml,%3Csvg width='97' height='54' viewBox='0 0 97 54' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3CforeignObject x='-16' y='-16' width='128.615' height='85.347'%3E%3Cdiv xmlns='http://www.w3.org/1999/xhtml' style='backdrop-filter:blur(8px);clip-path:url(%23bgblur_0_2138_4769_clip_path);height:100%25;width:100%25'%3E%3C/div%3E%3C/foreignObject%3E%3Cg data-figma-bg-blur-radius='16'%3E%3Cpath d='M1.38565 29.3871C0.620378 16.1544 10.7272 4.80676 23.96 4.04149L69.8832 1.38565C83.116 0.620378 94.4636 10.7272 95.2289 23.96C95.9941 37.1927 85.8873 48.5403 72.6545 49.3056L26.7313 51.9614C13.4985 52.7267 2.15093 42.6198 1.38565 29.3871Z' fill='%23A6CCFF' fill-opacity='0.4'/%3E%3Cpath d='M23.9888 4.54066L69.9121 1.88482C82.8691 1.13549 93.9804 11.0318 94.7297 23.9888C95.479 36.9459 85.5827 48.0571 72.6257 48.8064L26.7024 51.4623C13.7454 52.2116 2.63415 42.3153 1.88482 29.3582C1.13549 16.4012 11.0318 5.28999 23.9888 4.54066Z' stroke='white' stroke-opacity='0.16'/%3E%3Cg clip-path='url(%23clip1_2138_4769)'%3E%3Cpath d='M25.6138 44.0127L26.944 43.9358C34.1652 43.5181 37.7765 43.3093 39.8895 40.9369C42.0024 38.5646 41.7745 34.9558 41.3579 27.7524L41.2799 26.403C40.8633 19.2009 40.6545 15.5897 38.3013 13.4756C35.9482 11.3616 32.3177 11.5715 25.0964 11.9891L23.7662 12.0661C16.5438 12.4838 12.9338 12.6925 10.8208 15.0649C8.70788 17.4372 8.91658 21.0459 9.33324 28.2505L9.41127 29.5999C9.82786 36.8033 10.0366 40.4132 12.409 42.5262C14.7813 44.6392 18.3913 44.4304 25.6138 44.0127Z' fill='%230077FF'/%3E%3Cpath d='M26.9246 34.9937C19.7213 35.4103 15.0607 30.6654 14.4104 22.3704L18.0587 22.1594C18.5252 28.2534 21.4505 30.6818 23.6087 31.0865L23.0756 21.8693L26.5732 21.667L26.8776 26.9305C28.9166 26.5844 30.925 24.0655 31.4954 21.3823L34.9342 21.1834C34.5713 24.4649 32.3726 26.9948 30.7763 28.0783C32.476 28.7813 35.2574 30.718 36.5022 34.4398L32.721 34.6585C31.7762 32.1771 29.7053 30.3326 27.0677 30.2184L27.3425 34.9696L26.9246 34.9937Z' fill='white'/%3E%3C/g%3E%3Cpath d='M49.0433 18.6176L52.1381 18.4386L55.5801 29.4583L57.2772 29.3601L59.4259 18.0171L62.5208 17.8382L59.7351 32.0226L53.4456 32.3864L49.0433 18.6176ZM64.8328 31.7278L64.0245 17.7512L67.0195 17.578L67.337 23.0688L69.3337 22.9533L72.8098 17.2431L76.2041 17.0468L71.9986 24.0012L77.3119 31.0061L73.8178 31.2082L69.5952 25.7429L67.4987 25.8641L67.8278 31.5546L64.8328 31.7278Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='bgblur_0_2138_4769_clip_path' transform='translate(16 16)'%3E%3Cpath d='M1.38565 29.3871C0.620378 16.1544 10.7272 4.80676 23.96 4.04149L69.8832 1.38565C83.116 0.620378 94.4636 10.7272 95.2289 23.96C95.9941 37.1927 85.8873 48.5403 72.6545 49.3056L26.7313 51.9614C13.4985 52.7267 2.15093 42.6198 1.38565 29.3871Z'/%3E%3C/clipPath%3E%3CclipPath id='clip1_2138_4769'%3E%3Crect x='8.44849' y='12.9519' width='32' height='32' rx='16' transform='rotate(-3.30984 8.44849 12.9519)' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E "
+                            alt="VK"
+                            class="about__vk hidden-mobile"
+                            width="100" height="48"
+                    >
+
+                    <img
+                            src="data:image/svg+xml,%3Csvg width='95' height='52' viewBox='0 0 95 52' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3CforeignObject x='-15.9998' y='-16' width='126.028' height='83.4377'%3E%3Cdiv xmlns='http://www.w3.org/1999/xhtml' style='backdrop-filter:blur(8px);clip-path:url(%23bgblur_0_2138_5417_clip_path);height:100%25;width:100%25'%3E%3C/div%3E%3C/foreignObject%3E%3Cg data-figma-bg-blur-radius='16'%3E%3Crect x='6.4821' width='89.0012' height='36.0012' rx='18.0006' transform='rotate(10.3728 6.4821 0)' fill='%23A6CCFF' fill-opacity='0.4'/%3E%3Crect x='6.88391' y='0.581855' width='88.0012' height='35.0012' rx='17.5006' transform='rotate(10.3728 6.88391 0.581855)' stroke='white' stroke-opacity='0.16'/%3E%3Cg clip-path='url(%23clip1_2138_5417)'%3E%3Cpath d='M18.3028 32.6628L19.2858 32.8426C24.6222 33.8192 27.2909 34.3075 29.2514 32.9535C31.212 31.5995 31.686 28.9292 32.6601 23.606L32.8425 22.6089C33.8165 17.2867 34.3048 14.6181 32.965 12.6601C31.6251 10.7021 28.9423 10.2112 23.6059 9.23468L22.6229 9.0548C17.2856 8.07811 14.6179 7.58994 12.6574 8.94395C10.6968 10.298 10.2089 12.9647 9.23458 18.2888L9.05211 19.2859C8.078 24.6091 7.58984 27.2768 8.94384 29.2373C10.2979 31.1979 12.9656 31.6861 18.3028 32.6628Z' fill='url(%23paint0_linear_2138_5417)'/%3E%3Cpath d='M19.0816 12.368C18.2201 12.252 17.6118 12.2821 17.0655 12.3885C16.5002 12.4977 16.0024 12.6915 15.4757 13.0569C14.9484 13.4224 14.5928 13.8204 14.292 14.3113C14.0008 14.7862 13.7601 15.3452 13.566 16.1929C13.3719 17.0422 13.3133 17.3137 12.9187 19.4941C12.524 21.6743 12.4836 21.9496 12.3677 22.8135C12.2522 23.6748 12.2818 24.2828 12.3882 24.8293C12.4977 25.3947 12.6912 25.8922 13.0568 26.4192C13.4221 26.9462 13.8205 27.3016 14.3115 27.6027C14.7859 27.8935 15.3451 28.1348 16.1926 28.3286C17.0419 28.523 17.3137 28.5813 19.4935 28.9759C21.6744 29.3707 21.9495 29.4111 22.8131 29.5272C23.6746 29.6426 24.2824 29.6125 24.8291 29.5067C25.3946 29.3967 25.8922 29.2037 26.419 28.8381C26.9457 28.4727 27.3013 28.0744 27.6022 27.5833C27.8933 27.1089 28.1346 26.5497 28.328 25.7027C28.5222 24.8529 28.5811 24.5809 28.9758 22.4008C29.3705 20.2204 29.4106 19.9455 29.5266 19.0822C29.6424 18.2202 29.6123 17.6123 29.5062 17.0655C29.3965 16.5001 29.2031 16.003 28.8379 15.4757C28.4725 14.949 28.0743 14.5928 27.5831 14.2925C27.1085 14.0014 26.5496 13.7599 25.702 13.5666C24.8528 13.372 24.581 13.3136 22.4004 12.9189C20.2203 12.5242 19.9452 12.4836 19.0816 12.368ZM16.5199 26.8954C15.7436 26.7182 15.3425 26.5104 15.0792 26.3496C14.7307 26.1358 14.495 25.9129 14.2645 25.5818C14.0347 25.2497 13.909 24.9509 13.8311 24.5499C13.7729 24.2465 13.7182 23.7979 13.8247 23.0086C13.9398 22.1554 13.9771 21.8999 14.3654 19.7559C14.7533 17.6124 14.8076 17.36 14.9995 16.52C15.1761 15.7441 15.3848 15.3426 15.5453 15.0795C15.7591 14.7305 15.9815 14.4952 16.3131 14.2648C16.6452 14.0345 16.9439 13.9093 17.3452 13.8314C17.6484 13.7727 18.0968 13.719 18.8859 13.825C19.7398 13.9398 19.9949 13.9777 22.1383 14.3656C24.2823 14.7536 24.5347 14.8076 25.3747 14.9998C26.1505 15.1769 26.5523 15.3843 26.8149 15.5455C27.1636 15.7593 27.3996 15.9812 27.6296 16.3133C27.8597 16.6454 27.9855 16.9437 28.0632 17.3458C28.1221 17.6482 28.1757 18.0971 28.0695 18.8859C27.9549 19.7398 27.9175 19.9953 27.5293 22.1388C27.1413 24.2827 27.0871 24.5351 26.895 25.3746C26.7177 26.1509 26.5101 26.5524 26.349 26.8159C26.1354 27.1641 25.9129 27.3999 25.581 27.6303C25.2493 27.8596 24.9505 27.9858 24.5489 28.0636C24.2463 28.1222 23.7973 28.1761 23.0087 28.0702C22.1549 27.9551 21.8997 27.9178 19.7555 27.5294C17.6121 27.1415 17.36 27.0871 16.5199 26.8954ZM25.0452 17.2631C24.949 17.7948 25.3024 18.3043 25.8342 18.4006C26.3662 18.4968 26.8757 18.1436 26.9722 17.6119C27.0684 17.0801 26.715 16.5704 26.183 16.4741C25.651 16.3778 25.1414 16.7313 25.0452 17.2631ZM16.8244 20.2011C16.4123 22.4783 17.9241 24.6579 20.2008 25.0699C22.4777 25.482 24.6582 23.9708 25.0703 21.6936C25.4823 19.4172 23.9704 17.2365 21.6932 16.8244C19.4166 16.4123 17.2364 17.9244 16.8244 20.2011ZM18.2706 20.4628C18.5384 18.9848 19.9538 18.0034 21.4314 18.2711C22.9094 18.5386 23.8911 19.9536 23.6236 21.4318C23.356 22.9101 21.9407 23.8912 20.4625 23.6237C18.9848 23.3562 18.0031 21.941 18.2706 20.4628Z' fill='white'/%3E%3C/g%3E%3Cpath d='M38.5963 30.2777L40.6129 19.2607L42.9737 19.6928L40.9571 30.7098L38.5963 30.2777ZM43.0074 31.0851L45.024 20.0681L48.093 20.6299L50.9951 29.2127L51.1525 29.2415L51.2399 27.8749L52.4211 21.4221L54.7819 21.8543L52.7653 32.8712L49.6963 32.3095L46.7942 23.7267L46.6368 23.6979L46.5493 25.0644L45.3682 31.5172L43.0074 31.0851ZM54.8155 29.668L57.255 30.1146C57.2918 30.4466 57.3931 30.7525 57.5587 31.0322C57.9205 31.6624 58.5578 32.061 59.4707 32.228C60.8347 32.4777 61.5935 32.1829 61.7471 31.3435C61.7856 31.1336 61.7467 30.9313 61.6305 30.7365C61.5248 30.5437 61.3314 30.3565 61.0502 30.1749C60.7794 29.9952 60.5091 29.8427 60.2393 29.7174C59.9818 29.5835 59.6433 29.4185 59.2238 29.2225C59.1628 29.2005 59.1122 29.1804 59.0722 29.1622C59.0426 29.1459 58.9973 29.1268 58.9363 29.1048C58.8877 29.0742 58.8433 29.0498 58.8033 29.0316C56.7169 28.1075 55.8187 26.8533 56.1087 25.269C56.2816 24.3247 56.8105 23.5974 57.6955 23.087C58.593 22.5681 59.6869 22.4268 60.9775 22.663C62.6563 22.9703 63.8221 23.7693 64.4751 25.0599C64.7396 25.6289 64.8887 26.2363 64.9223 26.8823L62.4828 26.4357C62.4602 26.2039 62.3779 25.9719 62.2361 25.7399C61.9142 25.2472 61.365 24.9298 60.5886 24.7877C59.9905 24.6783 59.5182 24.7111 59.1717 24.8862C58.8271 25.0509 58.6241 25.3011 58.5626 25.6368C58.4512 26.2454 59.0592 26.8338 60.3866 27.4021C60.7279 27.5513 60.9387 27.6441 61.0188 27.6805C61.1094 27.7187 61.3139 27.8158 61.6324 27.9717C61.9613 28.1295 62.1778 28.2505 62.2816 28.3345C62.398 28.41 62.5862 28.5367 62.8465 28.7144C63.1191 28.8836 63.3036 29.0313 63.3998 29.1573C63.5065 29.2853 63.6379 29.4557 63.7942 29.6687C63.9628 29.873 64.0727 30.0721 64.124 30.2658C64.1753 30.4596 64.2103 30.6828 64.2291 30.9357C64.2603 31.18 64.251 31.4385 64.201 31.7113C64.0224 32.6871 63.4782 33.4387 62.5683 33.9662C61.6604 34.4832 60.4982 34.612 59.0818 34.3527C57.2141 34.0109 55.9601 33.1307 55.3197 31.7122C55.0104 31.0917 54.8423 30.4103 54.8155 29.668ZM65.9488 26.1755L66.3521 23.9721L75.7952 25.7006L75.3919 27.904L71.8508 27.2558L70.2375 36.0694L67.8767 35.6373L69.49 26.8237L65.9488 26.1755Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='bgblur_0_2138_5417_clip_path' transform='translate(15.9998 16)'%3E%3Crect x='6.4821' width='89.0012' height='36.0012' rx='18.0006' transform='rotate(10.3728 6.4821 0)'/%3E%3C/clipPath%3E%3ClinearGradient id='paint0_linear_2138_5417' x1='23.1074' y1='9.14345' x2='18.7873' y2='32.7514' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23C51EA9'/%3E%3Cstop offset='0.293269' stop-color='%23D22097'/%3E%3Cstop offset='0.698907' stop-color='%23E75D5A'/%3E%3Cstop offset='1' stop-color='%23F2A328'/%3E%3C/linearGradient%3E%3CclipPath id='clip1_2138_5417'%3E%3Crect x='11.3034' y='6.9834' width='24' height='24' rx='12' transform='rotate(10.37 11.3034 6.9834)' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E "
+                            alt="Instagram"
+                            class="about__inst visible-mobile"
+                            width="81" height="29"
+                    >
+                    <img
+                            src="data:image/svg+xml,%3Csvg width='82' height='51' viewBox='0 0 82 51' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3CforeignObject x='-16' y='-16' width='113.692' height='82.5663'%3E%3Cdiv xmlns='http://www.w3.org/1999/xhtml' style='backdrop-filter:blur(8px);clip-path:url(%23bgblur_0_2138_5423_clip_path);height:100%25;width:100%25'%3E%3C/div%3E%3C/foreignObject%3E%3Cg data-figma-bg-blur-radius='16'%3E%3Cpath d='M3.62457 32.935C1.62277 23.1975 7.8938 13.681 17.6313 11.6792L56.8119 3.62457C66.5494 1.62277 76.066 7.8938 78.0678 17.6313C80.0696 27.3688 73.7986 36.8854 64.0611 38.8872L24.8804 46.9417C15.1429 48.9435 5.62636 42.6725 3.62457 32.935Z' fill='%23A6CCFF' fill-opacity='0.4'/%3E%3Cpath d='M17.732 12.1689L56.9126 4.11432C66.3796 2.16814 75.6319 8.26497 77.578 17.732C79.5242 27.199 73.4274 36.4512 63.9604 38.3974L24.7797 46.452C15.3127 48.3982 6.06051 42.3013 4.11432 32.8343C2.16814 23.3673 8.26497 14.1151 17.732 12.1689Z' stroke='white' stroke-opacity='0.16'/%3E%3Cpath d='M23.6724 41.0647C30.1641 39.7302 34.3447 33.3858 33.0102 26.8941C31.6757 20.4024 25.3313 16.2218 18.8396 17.5563C12.348 18.8908 8.1673 25.2352 9.50183 31.7269C10.8364 38.2185 17.1807 42.3992 23.6724 41.0647Z' fill='url(%23paint0_linear_2138_5423)'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.7971 30.5088C17.9168 28.3115 19.9994 26.8576 21.0449 26.147C24.0301 24.1182 24.6599 23.7429 25.1004 23.6443C25.1973 23.6226 25.4196 23.602 25.5839 23.6873C25.7227 23.7593 25.7822 23.883 25.8167 23.9712C25.8511 24.0595 25.9135 24.2639 25.9315 24.4299C26.1366 26.3249 26.2985 30.9926 26.337 33.1543C26.3533 34.0691 26.0896 34.4311 25.7815 34.5246C25.1118 34.7277 24.4878 34.3203 23.7376 34.0229C22.5637 33.5574 21.8924 33.2554 20.7522 32.8001C19.4345 32.2739 20.1004 31.6989 20.6206 30.876C20.7567 30.6607 23.2018 27.3069 23.209 27.0467C23.2099 27.0142 23.1929 26.8971 23.1116 26.8502C23.0303 26.8032 22.9332 26.845 22.8634 26.8766C22.7645 26.9215 21.3364 28.3536 18.5791 31.1729C18.1762 31.5915 17.7836 31.8358 17.4012 31.9058C16.9796 31.983 16.1254 31.9207 15.4851 31.849C14.6998 31.7611 14.0888 31.7548 14.0562 31.338C14.0392 31.1209 14.2862 30.8445 14.7971 30.5088Z' fill='white'/%3E%3Cpath d='M38.4477 22.7543L37.9966 20.5602L47.4 18.6271L47.851 20.8212L44.3248 21.5461L46.129 30.3226L43.7782 30.8059L41.9739 22.0294L38.4477 22.7543ZM51.7811 27.7722C50.425 26.8967 49.5762 25.6283 49.2347 23.967C48.8932 22.3058 49.1739 20.8106 50.0767 19.4816C50.9879 18.14 52.3212 17.2887 54.0764 16.9279C56.0407 16.5241 57.6953 16.8918 59.0402 18.0309C59.6454 18.5381 60.1246 19.1475 60.4778 19.8589L58.0486 20.3583C57.8419 20.0414 57.5685 19.7709 57.2284 19.5468C56.4726 19.0488 55.5723 18.9072 54.5275 19.122C53.4827 19.3368 52.6999 19.8462 52.1791 20.6502C51.6667 21.4416 51.521 22.3754 51.7423 23.4515C51.9678 24.5486 52.4669 25.3607 53.2395 25.8879C54.0205 26.4026 54.9438 26.5503 56.0095 26.3312C57.1066 26.1057 57.8914 25.5796 58.3639 24.7528C58.5899 24.3688 58.7311 23.9695 58.7874 23.555L57.0635 23.9094L56.6607 21.9504L62.0677 20.8388L62.4704 22.7979L61.2166 23.0556C61.1521 23.9074 60.9399 24.7024 60.5798 25.4407C59.777 27.0976 58.404 28.1258 56.4606 28.5254C54.7053 28.8862 53.1455 28.6352 51.7811 27.7722Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='bgblur_0_2138_5423_clip_path' transform='translate(16 16)'%3E%3Cpath d='M3.62457 32.935C1.62277 23.1975 7.8938 13.681 17.6313 11.6792L56.8119 3.62457C66.5494 1.62277 76.066 7.8938 78.0678 17.6313C80.0696 27.3688 73.7986 36.8854 64.0611 38.8872L24.8804 46.9417C15.1429 48.9435 5.62636 42.6725 3.62457 32.935Z'/%3E%3C/clipPath%3E%3ClinearGradient id='paint0_linear_2138_5423' x1='1182.51' y1='-221.665' x2='1662.2' y2='2111.74' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%232AABEE'/%3E%3Cstop offset='1' stop-color='%23229ED9'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E "
+                            alt="Telegram"
+                            class="about__tg visible-mobile"
+                            width="68" height="29"
+                    >
+                    <img
+                            src="data:image/svg+xml,%3Csvg width='77' height='41' viewBox='0 0 77 41' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3CforeignObject x='-16' y='-16' width='108.954' height='72.2701'%3E%3Cdiv xmlns='http://www.w3.org/1999/xhtml' style='backdrop-filter:blur(8px);clip-path:url(%23bgblur_0_2138_5428_clip_path);height:100%25;width:100%25'%3E%3C/div%3E%3C/foreignObject%3E%3Cg data-figma-bg-blur-radius='16'%3E%3Cpath d='M1.03924 22.3002C0.465284 12.3756 8.04543 3.86492 17.97 3.29096L56.9049 1.03927C66.8295 0.465317 75.3402 8.04546 75.9141 17.97C76.4881 27.8946 68.9079 36.4053 58.9834 36.9792L20.0485 39.2309C10.1239 39.8049 1.6132 32.2247 1.03924 22.3002Z' fill='%23A6CCFF' fill-opacity='0.4'/%3E%3Cpath d='M17.9988 3.79013L56.9338 1.53844C66.5826 0.980426 74.857 8.35001 75.415 17.9989C75.973 27.6477 68.6034 35.922 58.9545 36.4801L20.0196 38.7317C10.3707 39.2898 2.09642 31.9202 1.53841 22.2713C0.980393 12.6224 8.34998 4.34814 17.9988 3.79013Z' stroke='white' stroke-opacity='0.16'/%3E%3Cg clip-path='url(%23clip1_2138_5428)'%3E%3Cpath d='M19.2104 33.2693L20.2081 33.2116C25.624 32.8984 28.3324 32.7418 29.9172 30.9625C31.5019 29.1832 31.3309 26.4766 31.0185 21.0741L30.96 20.0621C30.6476 14.6605 30.4909 11.9521 28.7261 10.3665C26.9612 8.78099 24.2383 8.93845 18.8224 9.25167L17.8247 9.30936C12.4079 9.62263 9.7004 9.77921 8.11568 11.5585C6.53097 13.3377 6.6875 16.0443 6.99999 21.4477L7.05852 22.4597C7.37096 27.8623 7.52753 30.5697 9.30679 32.1545C11.0861 33.7392 13.7935 33.5826 19.2104 33.2693Z' fill='%230077FF'/%3E%3Cpath d='M20.1928 26.5051C14.7903 26.8176 11.2948 23.2589 10.8071 17.0376L13.5434 16.8794C13.8933 21.4498 16.0872 23.2712 17.7058 23.5747L17.306 16.6618L19.9292 16.51L20.1575 20.4577C21.6868 20.1981 23.1931 18.3089 23.6209 16.2966L26.2 16.1474C25.9278 18.6085 24.2788 20.5059 23.0815 21.3185C24.3563 21.8458 26.4424 23.2983 27.376 26.0897L24.5401 26.2537C23.8314 24.3926 22.2783 23.0093 20.3001 22.9236L20.5062 26.487L20.1928 26.5051Z' fill='white'/%3E%3C/g%3E%3Cpath d='M36.8386 15.0211L39.3145 14.8779L42.068 23.6937L43.4258 23.6151L45.1447 14.5408L47.6206 14.3976L45.392 25.7452L40.3604 26.0362L36.8386 15.0211ZM49.4702 25.5093L48.8236 14.328L51.2196 14.1894L51.4736 18.5821L53.0709 18.4897L55.8518 13.9215L58.5673 13.7645L55.2029 19.328L59.4535 24.932L56.6582 25.0936L53.2801 20.7214L51.6029 20.8184L51.8662 25.3708L49.4702 25.5093Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='bgblur_0_2138_5428_clip_path' transform='translate(16 16)'%3E%3Cpath d='M1.03924 22.3002C0.465284 12.3756 8.04543 3.86492 17.97 3.29096L56.9049 1.03927C66.8295 0.465317 75.3402 8.04546 75.9141 17.97C76.4881 27.8946 68.9079 36.4053 58.9834 36.9792L20.0485 39.2309C10.1239 39.8049 1.6132 32.2247 1.03924 22.3002Z'/%3E%3C/clipPath%3E%3CclipPath id='clip1_2138_5428'%3E%3Crect x='6.33643' y='9.97375' width='24' height='24' rx='12' transform='rotate(-3.30984 6.33643 9.97375)' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E "
+                            alt="VK"
+                            class="about__vk visible-mobile"
+                            width="65" height="29"
+                    >
+                </div>
+                <p class="about__subheader">— клининг с безупречной репутацией.<br class="hidden-mobile"> С 2020 года создаем идеальную чистоту <span>для домов</span> и <span>бизнеса</span>, используя профессиональные методы и премиальную химию.</p>
+
+                <div class="carousel__wrapper">
+                    <div class="carousel__track">
+                        {% for log in logo %}
+                        <div class="carousel__slide">
+                            <img src="{{ log.photo.url }}">
+                        </div>
+                        {% endfor %}
+                        {% for log in logo %}
+                        <div class="carousel__slide">
+                            <img src="{{ log.photo.url }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button class="about__button button modal-open">Заказать уборку</button>
+
+            </div>
+        </section>
+        <section class="service container">
+            <div id="service" class="service__inner">
+                <div class="service__title">
+                    <h5 class="h5 service__header splitting-text" data-splitting>Наши <span class="blue_gradient">Услуги</span></h5>
+                    <p class="service__subheader">Профессиональный клининг, который говорит сам за себя. <br> Наши услуги — это ваше время, комфорт и безупречный результат.</p>
+                </div>
+                <div class="service__cards-wrapper">
+                {% for service in services %}
+                    <div class="service__card">
+                        <div class="service__card-body">
+                            <div class="service__card-main">
+                                <div class="service__card-info"> 
+                                    <h6 class="service__card-header">{{ service.scope.name }}</h6>
+                                    <p class="service__card-subheader">{{ service.desc }}</p>
+                                    <div class="service__card-features">
+                                        <div class="card-features">
+                                            <img
+                                                    src="data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z' stroke='white' stroke-width='1.8' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M15.7099 15.18L12.6099 13.33C12.0699 13.01 11.6299 12.24 11.6299 11.61V7.51001' stroke='white' stroke-width='1.8' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A"
+                                                    alt=""
+                                                    class=""
+                                                    width="16" height="16"
+                                            > 
+                                            <span>{{ service.time_work }} Ч</span>
+                                        </div>
+                                        <div class="card-features">
+                                            <img
+                                                    src="data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.9999 3C7.03197 3 3 7.03197 3 11.9999M11.9999 20.9999C16.9679 20.9999 20.9999 16.9679 20.9999 11.9999' stroke='white' stroke-width='1.8' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16.1035 7.89619L20.2795 3.72021' stroke='white' stroke-width='1.8' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.89648 16.1038L3.72051 20.2798' stroke='white' stroke-width='1.8' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M11.7002 12.2999L12.6002 11.3999' stroke='white' stroke-width='1.8' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M21.0003 7.34697V3H16.6533' stroke='white' stroke-width='1.8' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2.99971 16.653V21H7.34668' stroke='white' stroke-width='1.8' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E "
+                                                    alt=""
+                                                    class=""
+                                                    width="16" height="16"
+                                            >
+                                            <span>ДО {{ service.square }} М2</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="service__pricing">
+                                    <button class="service__button button modal-open">Подробнее</button>
+                                    <button class="service__button-arrow button--arrow modal-open">
+                                        <div class="arrow-container"></div>
+                                        <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M32.5417 15.5417L15.5417 32.5417" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M32.5417 32.5417V15.5417H15.5417" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="service__splide-wrap">
+                                <div class="service__splide splide">
+                                <div class="service__splide-track splide__track">
+                                    <ul class="service__splide-list splide__list">
+                                        {% for serv_photo in service.photos.all %}
+                                        <li class="service__splide-slide splide__slide">
+                                                <img
+                                                        src="{{ serv_photo.photo.url }}"
+                                                        alt=""
+                                                        class="service__card-img"
+                                                >
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <!-- <div class="service__progress-wrapper">
+                                    <div class="service__progress">
+                                        <div class="service__progress-bar"></div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="other-carousel">
+            <h2 class="other-carousel__title splitting-text" data-splitting>А также...</h2>
+            <div class="other-carousel__wrapper">
+                <div class="other-carousel__track other-carousel__track--top">
+                        {% for scope in scope_services|slice:"5:10" %}
+                        <div class="other-carousel__slide">
+                            {{ scope.name }}
+                        </div>
+                        {% endfor %}
+                        {% for scope in scope_services|slice:"5:10" %}
+                        <div class="other-carousel__slide">
+                            {{ scope.name }}
+                        </div>
+                        {% endfor %}
+                </div>
+                <div class="other-carousel__track other-carousel__track--bottom">
+                    {% for scope in scope_services|slice:":5" %}
+                        <div class="other-carousel__slide">
+                            {{ scope.name }}
+                        </div>
+                        {% endfor %}
+
+                    {% for scope in scope_services|slice:":5" %}
+                        <div class="other-carousel__slide">
+                            {{ scope.name }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="cta">
+            <div class="cta__inner container">
+                <div class="cta__main">
+                    <div class="cta__title">
+                        <h5 class="cta__header splitting-text" data-splitting>Закажите уборку сегодня — получите скидку 15%!</h5>
+                        <div class="cta__subheader">Оставьте заявку до конца недели, и наш специалист приедет в удобное время.</div>
+                    </div>
+                    <div class="cta__socials">
+                        <p class="cta__socials-title">Подписывайся на нас в социальных сетях! Будь вкурсе всех событий</p>
+                        <div class="cta__socials-wrapper">
+                            <a href="" class="cta__socials-logo">
+                                <img
+                                    src="data:image/svg+xml,%3csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M23.974 50H26.0559C37.3579 50 43.01 50 46.52 46.49C50.03 42.98 50 37.3301 50 26.0559V23.944C50 12.672 50 7.02002 46.52 3.51001C43.04 1.00583e-05 37.3579 0 26.0559 0H23.974C12.67 0 7.01999 1.00583e-05 3.50998 3.51001C-2.23517e-06 7.02002 0 12.668 0 23.944V26.0559C0 37.3301 -2.23517e-06 42.98 3.50998 46.49C7.01999 50 12.67 50 23.974 50Z' fill='url(%23paint0_linear_2138_4491)'/%3e%3cpath d='M17.9594 8.11772C16.1506 8.2031 14.9151 8.49282 13.8355 8.91585C12.718 9.35152 11.7706 9.9354 10.8282 10.8817C9.88466 11.8285 9.30521 12.7776 8.87285 13.8963C8.45424 14.9786 8.17057 16.2146 8.09069 18.0246C8.01139 19.8378 7.9932 20.4162 8.00204 25.0325C8.01084 29.6483 8.03122 30.2277 8.11769 32.0415C8.20415 33.8498 8.4928 35.0847 8.91582 36.1649C9.35205 37.2825 9.93532 38.2293 10.8821 39.1723C11.8284 40.1153 12.778 40.6942 13.8972 41.1271C14.9785 41.5452 16.215 41.8299 18.0244 41.9093C19.8376 41.9891 20.4165 42.0067 25.0317 41.9979C29.649 41.9891 30.228 41.9687 32.0412 41.8828C33.85 41.7963 35.0843 41.5066 36.165 41.0847C37.2826 40.6474 38.23 40.0652 39.1724 39.1183C40.1148 38.172 40.6942 37.2224 41.1266 36.1032C41.5453 35.0219 41.83 33.7854 41.9088 31.9771C41.9881 30.1627 42.0068 29.5833 41.998 24.9675C41.9892 20.3512 41.9683 19.7728 41.8823 17.9601C41.7964 16.1502 41.5067 14.9158 41.0842 13.8351C40.6475 12.7175 40.0647 11.7712 39.1184 10.8277C38.1721 9.88527 37.2226 9.30471 36.1033 8.87344C35.0216 8.45482 33.7856 8.16949 31.9762 8.09128C30.1629 8.01086 29.5841 7.99325 24.9672 8.00206C20.3515 8.01087 19.7727 8.0307 17.9594 8.11772ZM18.1577 38.8495C16.5003 38.7774 15.6003 38.502 15.0005 38.2712C14.2062 37.9638 13.6395 37.5953 13.043 37.0032C12.4475 36.4089 12.0779 35.8438 11.7678 35.0511C11.5348 34.4513 11.2545 33.5524 11.1768 31.895C11.0926 30.1032 11.0733 29.5656 11.065 25.0264C11.0562 20.4883 11.0727 19.9507 11.151 18.1573C11.222 16.501 11.4991 15.5999 11.7293 15.0006C12.0366 14.2052 12.404 13.6396 12.9972 13.0431C13.5915 12.4465 14.1567 12.078 14.9498 11.7679C15.5491 11.5338 16.448 11.2557 18.1048 11.1769C19.8977 11.0921 20.4347 11.0739 24.9727 11.0651C29.5119 11.0563 30.0495 11.0723 31.8429 11.151C33.4991 11.2232 34.4002 11.4975 34.999 11.7294C35.7938 12.0367 36.3605 12.403 36.9565 12.9973C37.5525 13.5917 37.9221 14.1557 38.2322 14.9505C38.4663 15.5481 38.7444 16.4481 38.8226 18.1044C38.908 19.8973 38.9273 20.4349 38.9355 24.973C38.9443 29.5122 38.9278 30.0498 38.8491 31.8421C38.7769 33.4995 38.5021 34.4001 38.2707 35.0005C37.9634 35.7942 37.596 36.361 37.0022 36.9575C36.4085 37.5518 35.8434 37.9225 35.0496 38.2326C34.4515 38.4661 33.5515 38.7449 31.8958 38.8236C30.1029 38.9079 29.5659 38.9272 25.0262 38.9354C20.4881 38.9443 19.9511 38.9272 18.1577 38.8495ZM32.0164 15.9128C32.0186 17.0386 32.934 17.9502 34.0599 17.948C35.1862 17.9458 36.0978 17.0309 36.0962 15.9051C36.094 14.7792 35.1785 13.8671 34.0522 13.8693C32.9258 13.8715 32.0142 14.7869 32.0164 15.9128ZM16.2712 25.0165C16.2806 29.8377 20.1962 33.7375 25.0163 33.7281C29.8369 33.7187 33.7387 29.8041 33.7294 24.9829C33.72 20.1634 29.8038 16.2614 24.9827 16.2708C20.1626 16.2802 16.2618 20.1964 16.2712 25.0165ZM19.3331 25.0105C19.3276 21.8813 21.8602 19.3393 24.9887 19.3338C28.1178 19.3278 30.6603 21.8593 30.6664 24.989C30.6725 28.1187 28.1399 30.6601 25.0102 30.6662C21.8817 30.6722 19.3391 28.1402 19.3331 25.0105Z' fill='white'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_2138_4491' x1='25' y1='0' x2='25' y2='50' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23C51EA9'/%3e%3cstop offset='0.293269' stop-color='%23D22097'/%3e%3cstop offset='0.698907' stop-color='%23E75D5A'/%3e%3cstop offset='1' stop-color='%23F2A328'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+                                    alt="Instagram"
+                                    class="cta__logo"
+                                    width="50" height="50"
+                                >
+
+                            </a>
+                            <a href="" class="cta__socials-logo">
+                                <img
+                                        src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M16%2032C24.8366%2032%2032%2024.8366%2032%2016C32%207.16344%2024.8366%200%2016%200C7.16344%200%200%207.16344%200%2016C0%2024.8366%207.16344%2032%2016%2032Z'%20fill='url(%23paint0_linear_54_639)'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M7.24285%2015.8311C11.9072%2013.7989%2015.0175%2012.4591%2016.5737%2011.8119C21.0171%209.9637%2021.9404%209.64266%2022.5421%209.63206C22.6745%209.62973%2022.9704%209.66253%2023.1621%209.81808C23.324%209.94942%2023.3685%2010.1269%2023.3899%2010.2514C23.4112%2010.3759%2023.4377%2010.6596%2023.4166%2010.8812C23.1758%2013.4112%2022.1339%2019.5508%2021.6039%2022.3844C21.3796%2023.5834%2020.938%2023.9855%2020.5104%2024.0248C19.5813%2024.1103%2018.8757%2023.4108%2017.9758%2022.8208C16.5676%2021.8977%2015.7721%2021.3231%2014.4051%2020.4223C12.8254%2019.3813%2013.8495%2018.8092%2014.7498%2017.8741C14.9854%2017.6294%2019.0792%2013.9058%2019.1585%2013.568C19.1684%2013.5257%2019.1776%2013.3682%2019.084%2013.2851C18.9905%2013.2019%2018.8524%2013.2304%2018.7527%2013.253C18.6115%2013.285%2016.3619%2014.772%2012.0038%2017.7137C11.3653%2018.1522%2010.7869%2018.3659%2010.2687%2018.3547C9.69743%2018.3423%208.59851%2018.0317%207.78158%2017.7661C6.77957%2017.4404%205.9832%2017.2682%206.05255%2016.715C6.08867%2016.4269%206.48544%2016.1322%207.24285%2015.8311Z'%20fill='white'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_54_639'%20x1='1600'%20y1='0'%20x2='1600'%20y2='3176.27'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%232AABEE'/%3e%3cstop%20offset='1'%20stop-color='%23229ED9'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+                                        alt="Telegram"
+                                        class="cta__logo"
+                                        width="50" height="50"
+                                >
+                            </a>
+                            <a href="" class="cta__socials-logo">
+                                <img
+                                        src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M15.3434%2032H16.6758C23.9091%2032%2027.5264%2032%2029.7728%2029.7536C32.0192%2027.5072%2032%2023.8913%2032%2016.6758V15.3242C32%208.11008%2032%204.49281%2029.7728%202.24641C27.5456%206.4373e-06%2023.9091%200%2016.6758%200H15.3434C8.1088%200%204.4928%206.4373e-06%202.24639%202.24641C-1.43051e-06%204.49281%200%208.10753%200%2015.3242V16.6758C0%2023.8913%20-1.43051e-06%2027.5072%202.24639%2029.7536C4.4928%2032%208.1088%2032%2015.3434%2032Z'%20fill='%230077FF'/%3e%3cpath%20d='M17.1722%2023.0717C9.95684%2023.0717%205.57796%2018.0656%205.40771%209.74687H9.06212C9.17604%2015.8576%2011.9562%2018.4509%2014.0874%2018.9795V9.74687H17.5908V15.0192C19.6464%2014.7914%2021.7969%2012.3926%2022.5213%209.74687H25.9658C25.4141%2013.0019%2023.073%2015.4006%2021.4167%2016.3901C23.073%2017.1901%2025.738%2019.2842%2026.7658%2023.0717H22.9783C22.1783%2020.5398%2020.2174%2018.5789%2017.5908%2018.3126V23.0717H17.1722Z'%20fill='white'/%3e%3c/svg%3e"
+                                        alt="Вконтакте"
+                                        class="cta__logo"
+                                        width="50" height="50"
+                                >
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="cta__lines decorative-lines__wrapper">
+                <form 
+                    action="/" 
+                    class="cta__form" 
+                    method="post" 
+                    id="form-feedback" 
+                    data-url="{% url 'post_feedback' %}"
+                    data-feedback-form
+                    >
+                    {% csrf_token %}
+                    <h3 class="cta__form-title">Оставьте <span>заявку</span></h3>
+                    <div class="cta__fields">
+                        <div class="cta__cell">
+                            <input
+                                    class="cta__cell-input"
+                                    placeholder="Введите имя"
+                                    type="text"
+                                    name="name"
+                                    minlength="2"
+                                    maxlength="50"
+                                    required 
+                            />
+                        </div>
+
+                        <div class="cta__cell">
+                            <input
+                                    type="tel"
+                                    class="cta__cell-input"
+                                    placeholder="Номер телефона"
+                                    pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}"
+                                    name="phone"
+                                    data-phone
+                                    required
+                            />
+                        </div>
+
+                        <div class="cta__cell cta__cell--long">
+                            <textarea
+                                    name="message"
+                                    class="cta__cell-input cta__cell-input--long"
+                                    placeholder="Уточните свой вопрос"
+                                    maxlength="300"
+                                    rows="3"
+                            ></textarea>
+                        </div>
+                        <div class="cta__policy">
+                            <input type="checkbox" class="policy__checkbox" name="" id="policy" checked>
+                            <label for="policy" class="policy__label">
+                                С правилами <a href="/">политики конфиденциальности</a> ознакомлен
+                            </label>
+                        </div>
+                    </div>
+                    <div class="cta__action">
+                        <button type="submit" class="button cta__button">Оставить заявку</button>
+                    </div>
+                </form>
+                <div class="decorative-lines">
+                        <span class="decorative-lines__item"></span>
+                        <span class="decorative-lines__item"></span>
+                        <span class="decorative-lines__item"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="team container">
+            <h5 class="team__header h5 splitting-text" data-splitting>
+                Сотрудники <span>Компании</span>
+            </h5>
+            <div class="team__splide splide">
+                <div class="team__splide-track splide__track">
+                    <ul class="team__splide-list splide__list">
+                        {% for emp in employee %}
+                        <li class="team__splide-slide splide__slide">
+                            <img src="{{ emp.photo.url }}" alt="{{ emp.name }}" class="team__img" width="322" height="370">
+                            <div class="team__info">
+                                <p class="team__info-name">{{ emp.name }}</p>
+                                <p class="team__info-post">{{ emp.position }}</p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="controls hidden-tablet">
+                <button id="teamBtnPrev" class="reviews__controls-prev controls__button controls__prev">
+                    <img
+                        src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19%2012H5'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M12%205L5%2012L12%2019'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
+                        alt="Назад"
+                        class="controls__img"
+                        width="24" height="24"
+                    >
+                </button>
+
+                <p class="team__controls-current controls__current"></p>
+
+                <button id="teamBtnNext" class="team__controls-next controls__button controls__next">
+                    <img
+                        src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5%2012H19'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M12%205L19%2012L12%2019'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
+                        alt="Вперед"
+                        class="controls__img"
+                        width="24" height="24"
+                    >
+                </button>
+            </div>
+        </section>
+        <section class="cases" id='cases'>
+            <div class="cases__inner container">
+                <div class="cases__title">
+                    <h5 class="h5 splitting-text" data-splitting>Мы выполнили <br class="hidden-mobile"><span class="blue_gradient">>{{ order_info.cnt_order }} заказов</span></h5>
+                    <p class="p1 cases__subtitle">
+                        Посмотрите на наши <span>реальные работы</span>
+                        и убедитесь, что <span>мы предоставляем услуги</span> <span>высокого качества.</span>
+                    </p>
+                </div>
+                <div class="cases__action">
+                    <div class="cases__dropdown dropdown-cases"  
+                        id="scope-select"
+                        data-dropdown-config='{
+                            "options": [
+                            {% for scope in scope_services_for_orders %}
+                                {"value": "{{ scope.name }}", "label": "{{ scope.name }}"}{% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                            ]
+                        }'>
+                        <button class="dropdown__toggle" id="scope-select">
+                            Выбор услуги
+                        </button>
+                        <ul class="dropdown__menu hidden"></ul>
+                    </div>
+                    <div class="controls hidden-mobile">
+                            <button id="btnPrev" class="cases__controls-prev controls__button controls__prev">
+                                <img
+                                        src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19%2012H5'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M12%205L5%2012L12%2019'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
+                                        alt="Назад"
+                                        class="controls__img"
+                                        width="24" height="24"
+                                >
+                            </button>
+
+                            <p id="casesCurrent" class="cases__controls-current controls__current"></p>
+
+                            <button id="btnNext" class="cases__controls-next controls__button controls__next">
+                                <img
+                                        src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5%2012H19'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M12%205L19%2012L12%2019'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
+                                        alt="Вперед"
+                                        class="controls__img"
+                                        width="24" height="24"
+                                >
+                            </button>
+                    </div>
+
+                    <div class="cases__button-wrapper button__wrapper visible-mobile modal-open">
+                        <button class="button cases__button">Связаться</button>
+                        <button class="cases__button--arrow button--arrow modal-open">
+                            <span class="arrow-container"></span>
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                <path d="M15.5713 8.5H1.42915" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8.50022 15.5711L15.5713 8.5L8.50022 1.42893" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="cases__splide splide">
+                    <div class="splide__track">
+                        <div class="cases__splide-wrapper splide__list">
+                            {% for order in orders %}
+                            <div class="cases__splide-slide splide__slide" data-scope="{{ order.scope.name }}">
+                                <div class="slider__title">
+                                    <h2 class="slider__header">{{ order.scope.name }}</h2>
+                                    <div class="slider__features-wrapper">
+                                        <div class="card-features slider__features">
+                                            <img
+                                                    src="data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.10671 7.24683C8.04004 7.24016 7.96004 7.24016 7.88671 7.24683C6.30004 7.1935 5.04004 5.8935 5.04004 4.2935C5.04004 2.66016 6.36004 1.3335 8.00004 1.3335C9.63337 1.3335 10.96 2.66016 10.96 4.2935C10.9534 5.8935 9.69337 7.1935 8.10671 7.24683Z' stroke='%230060DF' stroke-width='1.2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M4.77323 9.7065C3.1599 10.7865 3.1599 12.5465 4.77323 13.6198C6.60657 14.8465 9.61323 14.8465 11.4466 13.6198C13.0599 12.5398 13.0599 10.7798 11.4466 9.7065C9.6199 8.4865 6.61323 8.4865 4.77323 9.7065Z' stroke='%230060DF' stroke-width='1.2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E "
+                                                    alt=""
+                                                    class=""
+                                                    width="16" height="16"
+                                            >
+                                            <span>{{ order.entity }}</span>
+                                        </div>
+                                        <div class="slider__features card-features">
+                                            <img
+                                                    src="data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.99967 1.3335C4.31967 1.3335 1.33301 4.32016 1.33301 8.00016M7.99967 14.6668C11.6797 14.6668 14.6663 11.6802 14.6663 8.00016' stroke='%230060DF' stroke-width='1.2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M11.04 4.96003L14.1334 1.8667' stroke='%230060DF' stroke-width='1.2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M4.95996 11.04L1.86663 14.1333' stroke='%230060DF' stroke-width='1.2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.77734 8.22233L8.44401 7.55566' stroke='%230060DF' stroke-width='1.2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M14.6663 4.5535V1.3335H11.4463' stroke='%230060DF' stroke-width='1.2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M1.33371 11.4465V14.6665H4.55371' stroke='%230060DF' stroke-width='1.2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E "
+                                                    alt=""
+                                                    class=""
+                                                    width="16" height="16"
+                                            >
+                                            <span>{{ order.square }} м2</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <img
+                                        src="{{ order.photo.url }}"
+                                        alt=""
+                                        class="slider__image"
+                                        width="636" height="370"
+                                >
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="reviews">
+            <div class="reviews__inner">
+                <div class="reviews__title container">
+                    <h5 class="h5 reviews__header splitting-text" data-splitting> наши <span class="blue_gradient">отзывы</span></h5>
+                    <p class="reviews__subheader p1">Посмотрите на наши <span>реальные работы</span><br class="hidden-mobile">
+                        и убедитесь, что <span>мы предоставляем услуги высокого качества.</span></p>
+                </div>
+                
+                <div class="ms-slide__container">
+                </div>
+                <div class="reviews__extra container">
+                    <div class="reviews__links">
+                        <button class="review-button" onclick="window.open('https://www.vl.ru/chistota-dv', '_blank')">
+                            <img
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOLSURBVHgBzVdNaBNBFP5mdjdNqiFJa8WDYosHEQX/LiKICt5b0Zug+IPoQfAggierBxFEqAdRBFFvXgTx76JoqzfRWhHEg9hUemlpm9W0sSa7M7633YRtmzbbJC1+sPmZnZnv/c2b9wRCInkvk3QLboeAsVsAW2iolYf91zY9aQ30adftMaLGY/toyg6zr6g0IXkr06oMdVZAHgkQVgQJc1+6uGSfTqVRjQCsscrjohA4ixqgNbpkhASZwyJlBWCttYE3mDJz7dBIC4W95awhZ5HfzGypKzlDoFVLvOG9Z78Kktdb85koY4mSAOxzXcCnRSMPChHB1mJMlFzAAbfo5Axyh8/l/0XJ9P1YQggXbewKzwJKqk4sMTi3eIL4vs+gzsg7Gn9zmvMAmpYJNC+XyNLYhFMKPFtYaDNB6RUwUCt4U5fIshkX61eZuLArhgPrIhicUHjwLY+XPx2M5ZWXmXwJvNRuKi32iIoJuQI5rbdHXJzcEcW1nQk0kD5n3uZw/Mk4RFQgRo/0SYJcfK+YQsjNwc30DK0qEedIw00tJt6dS6DRFLj8/g8uvsohvkIi3mR4Cs+5ni41E4GjxyZcGRPY3mIgm9foHXQwPK7REJvSIriXQavHSOu77ctxbEMDFL1cc9vGKG2SXDlFPB+5j1Y+BcngpkMUON0DDkwp8PxgHPp8E552xLG6QeCXrciUPvmwi94TCRwl8hwFl3F1BBOkTiQiwhAXkRSJO5my09m8kzmFQh54dCCO9jYLP3672Pcwi/4hB72nktjUbHrzrCujaF5lwFFYMFiADOa556Xv540pAx8PJ7yxD8MONq8wYZH9Gq+PIpY04FZBTrDZBen5ZrBvo40S3yc1kY15Y9tapsjbn2Uh6XxXSc5IS63V5zAz2dTRhESiK+NZ5cuoi6dfCyRI9WeYSzgphe4Ou4CtoWPAidc5HHoxjlSTRPh4KyOAi55iKuaLKHS9N0lRbxl8GmrLYJSKU5LvZQ31YCELo5RwaiXnopW5vdtQurILSwyumL1v/uB7maxwA0sE0v5GsSwrVUTSkp2ocCTrxJ6WFjpLvMUf7A+qUvYuqhDFojTQI0wry9ksooD9iyIEkzvYP7M3+P8aE4ZnCQtb6xGYHHBeGT5HjxiuOaWilQqXIwgPL7fw8a66OZ0lCGVMFNChtKISTlCLJdZiWnuuB7TWfVLIblgI3Z7/A9REe8uT8RSyAAAAAElFTkSuQmCC"
+                                    alt="VL.ru"
+                                    class="hero__review-logo"
+                                    width="32" height="32"
+                            >
+                            <span> {% if vl_data.average_rating %}{{ vl_data.average_rating }}{% else %} 5.0{% endif %}</span>
+                            <img
+                                    src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M11.4416%202.9252L12.9083%205.85853C13.1083%206.26686%2013.6416%206.65853%2014.0916%206.73353L16.7499%207.1752C18.4499%207.45853%2018.8499%208.69186%2017.6249%209.90853L15.5583%2011.9752C15.2083%2012.3252%2015.0166%2013.0002%2015.1249%2013.4835L15.7166%2016.0419C16.1833%2018.0669%2015.1083%2018.8502%2013.3166%2017.7919L10.8249%2016.3169C10.3749%2016.0502%209.63326%2016.0502%209.17492%2016.3169L6.68326%2017.7919C4.89992%2018.8502%203.81659%2018.0585%204.28326%2016.0419L4.87492%2013.4835C4.98326%2013.0002%204.79159%2012.3252%204.44159%2011.9752L2.37492%209.90853C1.15826%208.69186%201.54992%207.45853%203.24992%207.1752L5.90826%206.73353C6.34992%206.65853%206.88326%206.26686%207.08326%205.85853L8.54992%202.9252C9.34992%201.33353%2010.6499%201.33353%2011.4416%202.9252Z'%20fill='%23F9CB2D'/%3e%3c/svg%3e"
+                                    alt=""
+                                    class="hidden-mobile"
+                                    width="20" height="20"
+                            >
+                        </button>
+                        <button class="review-button" onclick="window.open('https://yandex.ru/maps/-/CHWKmQ7K', '_blank')">
+                            <img
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAI6SURBVHgB7ZexbhNBEIb/2dhFpIBSunAk0yPFJUiWODeQAgmK0CPxAMAT4PACgEQJEj0uUkY0uQIJSjd0SDiQwqUF6Y67YWbB512T892R87nhl07y3u7q/2Z2dqwjLCjqtQMY3DVEdxjooAIReMSgUUTRwWY4Gftzf8TB9naSXHrChEdYoYjx3JgfBxROpymANeetY6HsogZpRgyd9RXC6AsbeU3mKvVSTwvDQasTc/ML1iAm7ps4aQ6wLiW22Hk3a56617ARfk0fuv8YeaK9e/6eVjt7rdw0s+zsefRRng/p2Ow/ALYuYymAA2n3T06XLe8Y5IjfPJsPxJwUIsu8d9OLmIevkKd8gIUs0N5+5loPbvIN/P4dLgxgIZwsUGvH1sZfksipez0dJm7mLgwgWYBzlucVo/dOoz8aojIAVTJ8PTeTSL0sSPRGqt8DLqjCAHz0Fjj7PodwIqbeLX9twfSXAlDzrCy4xaegOVfPUwMlxArg9gJJu/03E8OZaZnoVfTzxg6X2iCpN07649tXvaMpq+JHMJPWggu0pDGtBEBT7TaYIu25UgAL4bZYbc8Lt2D1ANqeP39Kx+d2xlUCWLmFJ+25foCK9B9AAPgEaxLJx0qDGYdEeIiS4pdPwbP7/4+dkOU+URS0A2I6xhoU0cYV0wxPQ2Z+gZqlnpvheGyLsGEaAz0P1CR79uKpvy0AheOpIdOvIxPqoV7q+RtmcUHQ6cRJPJCv5K5M7qIS8YkWu4R7qEfuzvwC6o3pQznqsqgAAAAASUVORK5CYII="
+                                    alt="Яндекс"
+                                    class="hero__review-logo"
+                                    width="32" height="32"
+                            >
+                            <span> {% if yandex_data.average_rating %}{{ yandex_data.average_rating }}{% else %} 5.0{% endif %}</span>
+                            <img
+                                    src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M11.4416%202.9252L12.9083%205.85853C13.1083%206.26686%2013.6416%206.65853%2014.0916%206.73353L16.7499%207.1752C18.4499%207.45853%2018.8499%208.69186%2017.6249%209.90853L15.5583%2011.9752C15.2083%2012.3252%2015.0166%2013.0002%2015.1249%2013.4835L15.7166%2016.0419C16.1833%2018.0669%2015.1083%2018.8502%2013.3166%2017.7919L10.8249%2016.3169C10.3749%2016.0502%209.63326%2016.0502%209.17492%2016.3169L6.68326%2017.7919C4.89992%2018.8502%203.81659%2018.0585%204.28326%2016.0419L4.87492%2013.4835C4.98326%2013.0002%204.79159%2012.3252%204.44159%2011.9752L2.37492%209.90853C1.15826%208.69186%201.54992%207.45853%203.24992%207.1752L5.90826%206.73353C6.34992%206.65853%206.88326%206.26686%207.08326%205.85853L8.54992%202.9252C9.34992%201.33353%2010.6499%201.33353%2011.4416%202.9252Z'%20fill='%23F9CB2D'/%3e%3c/svg%3e"
+                                    alt=""
+                                    class="hidden-mobile"
+                                    width="20" height="20"
+                            >
+                        </button>
+                        <button class="review-button" onclick="window.open('https://go.2gis.com/0UnDt', '_blank')">
+                            <img
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATkSURBVHgBrVddTBxVFP7u7GIWijCYYAjLzyBpKz+GIdFUNKYQk9L6oEtsbHyiRH0wMRGqL76UXd9r6YPxoY1tnyq2ZumDKfICTaStNhFMoU1jWoa/CiXCsFhYWJjbcy8sy8LOsAt8yWTv7D33fN89995z7jAkCR5UVXg8PjAcBmM6PRo4V2UnYya1DXr6wXET4XAHazDNZPyybYlv5AmiZrhdjeuESSnml0hMgB2bMLATAXLGGemt1GzGrsD9rH4igFQEyFkrrJuaGvYGBixelygayhbyLq++x+SQvsgn/zVX39wRFwHOuYZH33VjulfDwigQHtvqyp0FeE8AmeVAeuHqf8sh4GknMH0r8ZgYtkQiTsAvw8Ghg1kHtAq1POZ4fmTV6dzgKnnxZzDDwPV7FowZLs30fIYqrwIth17G24GHratj7UTML1RHT8m6gLyrRa2Mwx99ryQRBRkFKNxXgHpvPd7KfZMIgaafltHziCf0fPINBa1HXNA8FL27HzpEw2pj9ZMt6wLyruRpzPXCUCJTIeBabTv+MwtQ98MyzAUOJ6jpQPfnbug5RD5yIT6CcRp4iVgKt3xR0vx2Dr8qb8HKYnLkAuYCpG3fqUJoBwMIRULISsta7QwNxMQsheh4f9vMtKCmLkasGdjM/o/3eqVDu7DbobaUyUi82vEaskmA8FWxtqyVORUoV8vM7LTsEnc4vOJjrsT56Gj+EbnuqZILiDHDtEk/0o7jwj8/YnR+DLem7mw0UTm4T6FMUGvnpCa3BtcHLOwUQkRFdrmDBTusKAqrsuvOSnsxqXW3gzHNUZRZaNtPcddFJtTsDEKROdrV29ar3UBTOIdqL2AW2R7sGHq+goGZQScTVXHqvU2bxlfpaOKIqnxg0LzvaKMwBtuLw43xLplYxJFKFWKM9hLbvPM3wxSJyKBHT9QrkohwcPHEIbmj/35ioWOAy6OZCKpHpGOqCxR6UR/ajasYm3cuTq59x7NrKAq6nYUIYYRNofTl//F+RTpOv5uDWcp2d0biT0fzOwqCTS68/sq/mEAX+ue6cJ7Ov5iEHZiCTjcY76Fmo5OAjev46f5PcPaD0+h/wtcTlK+C0X8unLnfhjODZ5EsLIvflKl4adkacjoNmxHQW7FfOUkpekW+951y4+HSNbTc/RqpYOFZKEcxGgyTyC+nMrBz/DfaZKL+M3kHEOst0m0qoPBfMptMuQnBV5Q25rK+THbw7bWdrXtF9Vs9IU7HTRQgUYiKqCBF7xj9Uw8C36AFUsDEx4bh/bnoHGX9pEWI3a168uQxHX02JktutOIVZhTESCkVR8uxGRnF8PzvKE4vCxwrOGrISEQdrpXlPmxzGRXOhOOLb5/HX8OZMlXr3lieWLRCRDSCifA9TC4OStJJaotfAQ5mtJZNlUTt4zJM3hWNbkaWvBFvDFs5VbREs5lcJMdLo5hYHMBTekQ7bM3aihfkHK46f5nNpVQgOBTUfZovKERsnI0gFM/IfC/CKyFHIltyFxr8B6b6N/6f+MOEruffPz7UPb30WMMeINHMo0hYaRhjxhelf5ZQmglgt+Scn+PhSHUicsm1nQP/A7ox8xU/Y7wRyYIKHF/ml7krrc2OOGaaJPx9qqp40nyUtGpJDH2eoxjR7CkqKl0Babb9jCk9VjjS4a9O7vP8OSFAKqa8USIUAAAAAElFTkSuQmCC"
+                                    alt="2gis"
+                                    class="hero__review-logo"
+                                    width="32" height="32"
+                            >
+                            <span> {% if gis_data.average_rating %}{{ gis_data.average_rating }}{% else %} 5.0{% endif %}</span>
+                            <img
+                                    src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M11.4416%202.9252L12.9083%205.85853C13.1083%206.26686%2013.6416%206.65853%2014.0916%206.73353L16.7499%207.1752C18.4499%207.45853%2018.8499%208.69186%2017.6249%209.90853L15.5583%2011.9752C15.2083%2012.3252%2015.0166%2013.0002%2015.1249%2013.4835L15.7166%2016.0419C16.1833%2018.0669%2015.1083%2018.8502%2013.3166%2017.7919L10.8249%2016.3169C10.3749%2016.0502%209.63326%2016.0502%209.17492%2016.3169L6.68326%2017.7919C4.89992%2018.8502%203.81659%2018.0585%204.28326%2016.0419L4.87492%2013.4835C4.98326%2013.0002%204.79159%2012.3252%204.44159%2011.9752L2.37492%209.90853C1.15826%208.69186%201.54992%207.45853%203.24992%207.1752L5.90826%206.73353C6.34992%206.65853%206.88326%206.26686%207.08326%205.85853L8.54992%202.9252C9.34992%201.33353%2010.6499%201.33353%2011.4416%202.9252Z'%20fill='%23F9CB2D'/%3e%3c/svg%3e"
+                                    alt=""
+                                    class="hidden-mobile"
+                                    width="20" height="20"
+                            >
+                        </button>
+                    </div>
+                    <div class="controls hidden-tablet">
+                        <button class="reviews__controls-prev controls__button controls__prev">
+                            <img
+                                    src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19%2012H5'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M12%205L5%2012L12%2019'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
+                                    alt="Назад"
+                                    class="controls__img"
+                                    width="24" height="24"
+                            >
+                        </button>
+
+                        <p class="reviews__controls-current controls__current"></p>
+
+                        <button class="reviews__controls-next controls__button controls__next">
+                            <img
+                                    src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5%2012H19'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M12%205L19%2012L12%2019'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
+                                    alt="Вперед"
+                                    class="controls__img"
+                                    width="24" height="24"
+                            >
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="cta-request">
+            <div class="cta-request__wrapper">
+                <div class="cta-request__inner container">
+                    <h2 class="cta-request__header splitting-text" data-splitting>
+                        Ваше время <br class="hidden-mobile"> дороже <br class="visible-mobile">
+                        <span id="typewriterCta"></span>
+                    </h2>
+                    <div class="cta-request__action">
+                        <button class="cta-request__button button--white modal-open">
+                            Оставить заявку
+                        </button>
+                        <div class="cta-request__contacts">
+                            <div class="cta-request__contacts-item">
+                                <img
+                                        src="data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.974 50H26.0559C37.3579 50 43.01 50 46.52 46.49C50.03 42.98 50 37.3301 50 26.0559V23.944C50 12.672 50 7.02002 46.52 3.51001C43.04 1.00583e-05 37.3579 0 26.0559 0H23.974C12.67 0 7.01999 1.00583e-05 3.50998 3.51001C-2.23517e-06 7.02002 0 12.668 0 23.944V26.0559C0 37.3301 -2.23517e-06 42.98 3.50998 46.49C7.01999 50 12.67 50 23.974 50Z' fill='url(%23paint0_linear_2138_3963)'/%3E%3Cpath d='M17.9594 8.11772C16.1506 8.2031 14.9151 8.49282 13.8355 8.91585C12.718 9.35152 11.7706 9.9354 10.8282 10.8817C9.88466 11.8285 9.30521 12.7776 8.87285 13.8963C8.45424 14.9786 8.17057 16.2146 8.09069 18.0246C8.01139 19.8378 7.9932 20.4162 8.00204 25.0325C8.01084 29.6483 8.03122 30.2277 8.11769 32.0415C8.20415 33.8498 8.4928 35.0847 8.91582 36.1649C9.35205 37.2825 9.93532 38.2293 10.8821 39.1723C11.8284 40.1153 12.778 40.6942 13.8972 41.1271C14.9785 41.5452 16.215 41.8299 18.0244 41.9093C19.8376 41.9891 20.4165 42.0067 25.0317 41.9979C29.649 41.9891 30.228 41.9687 32.0412 41.8828C33.85 41.7963 35.0843 41.5066 36.165 41.0847C37.2826 40.6474 38.23 40.0652 39.1724 39.1183C40.1148 38.172 40.6942 37.2224 41.1266 36.1032C41.5453 35.0219 41.83 33.7854 41.9088 31.9771C41.9881 30.1627 42.0068 29.5833 41.998 24.9675C41.9892 20.3512 41.9683 19.7728 41.8823 17.9601C41.7964 16.1502 41.5067 14.9158 41.0842 13.8351C40.6475 12.7175 40.0647 11.7712 39.1184 10.8277C38.1721 9.88527 37.2226 9.30471 36.1033 8.87344C35.0216 8.45482 33.7856 8.16949 31.9762 8.09128C30.1629 8.01086 29.5841 7.99325 24.9672 8.00206C20.3515 8.01087 19.7727 8.0307 17.9594 8.11772ZM18.1577 38.8495C16.5003 38.7774 15.6003 38.502 15.0005 38.2712C14.2062 37.9638 13.6395 37.5953 13.043 37.0032C12.4475 36.4089 12.0779 35.8438 11.7678 35.0511C11.5348 34.4513 11.2545 33.5524 11.1768 31.895C11.0926 30.1032 11.0733 29.5656 11.065 25.0264C11.0562 20.4883 11.0727 19.9507 11.151 18.1573C11.222 16.501 11.4991 15.5999 11.7293 15.0006C12.0366 14.2052 12.404 13.6396 12.9972 13.0431C13.5915 12.4465 14.1567 12.078 14.9498 11.7679C15.5491 11.5338 16.448 11.2557 18.1048 11.1769C19.8977 11.0921 20.4347 11.0739 24.9727 11.0651C29.5119 11.0563 30.0495 11.0723 31.8429 11.151C33.4991 11.2232 34.4002 11.4975 34.999 11.7294C35.7938 12.0367 36.3605 12.403 36.9565 12.9973C37.5525 13.5917 37.9221 14.1557 38.2322 14.9505C38.4663 15.5481 38.7444 16.4481 38.8226 18.1044C38.908 19.8973 38.9273 20.4349 38.9355 24.973C38.9443 29.5122 38.9278 30.0498 38.8491 31.8421C38.7769 33.4995 38.5021 34.4001 38.2707 35.0005C37.9634 35.7942 37.596 36.361 37.0022 36.9575C36.4085 37.5518 35.8434 37.9225 35.0496 38.2326C34.4515 38.4661 33.5515 38.7449 31.8958 38.8236C30.1029 38.9079 29.5659 38.9272 25.0262 38.9354C20.4881 38.9443 19.9511 38.9272 18.1577 38.8495ZM32.0164 15.9128C32.0186 17.0386 32.934 17.9502 34.0599 17.948C35.1862 17.9458 36.0978 17.0309 36.0962 15.9051C36.094 14.7792 35.1785 13.8671 34.0522 13.8693C32.9258 13.8715 32.0142 14.7869 32.0164 15.9128ZM16.2712 25.0165C16.2806 29.8377 20.1962 33.7375 25.0163 33.7281C29.8369 33.7187 33.7387 29.8041 33.7294 24.9829C33.72 20.1634 29.8038 16.2614 24.9827 16.2708C20.1626 16.2802 16.2618 20.1964 16.2712 25.0165ZM19.3331 25.0105C19.3276 21.8813 21.8602 19.3393 24.9887 19.3338C28.1178 19.3278 30.6603 21.8593 30.6664 24.989C30.6725 28.1187 28.1399 30.6601 25.0102 30.6662C21.8817 30.6722 19.3391 28.1402 19.3331 25.0105Z' fill='white'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_2138_3963' x1='25' y1='0' x2='25' y2='50' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23C51EA9'/%3E%3Cstop offset='0.293269' stop-color='%23D22097'/%3E%3Cstop offset='0.698907' stop-color='%23E75D5A'/%3E%3Cstop offset='1' stop-color='%23F2A328'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E "
+                                        alt=""
+                                        class=""
+                                        width="50" height="50"
+                                >
+                            </div>
+                            <div class="cta-request__contacts-item">
+                                <img
+                                        src="data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.974 50H26.0559C37.3579 50 43.01 50 46.52 46.49C50.03 42.98 50 37.3301 50 26.0559V23.944C50 12.672 50 7.02002 46.52 3.51001C43.04 1.00583e-05 37.3579 0 26.0559 0H23.974C12.67 0 7.01999 1.00583e-05 3.50998 3.51001C-2.23517e-06 7.02002 0 12.668 0 23.944V26.0559C0 37.3301 -2.23517e-06 42.98 3.50998 46.49C7.01999 50 12.67 50 23.974 50Z' fill='%230077FF'/%3E%3Cpath d='M26.8315 36.0495C15.5575 36.0495 8.71548 28.2275 8.44946 15.2295H14.1595C14.3375 24.7775 18.6815 28.8295 22.0115 29.6555V15.2295H27.4855V23.4675C30.6975 23.1115 34.0576 19.3635 35.1894 15.2295H40.5715C39.7094 20.3155 36.0515 24.0635 33.4636 25.6096C36.0515 26.8596 40.2155 30.1315 41.8215 36.0495H35.9035C34.6535 32.0935 31.5896 29.0295 27.4855 28.6135V36.0495H26.8315Z' fill='white'/%3E%3C/svg%3E "
+                                        alt=""
+                                        class=""
+                                        width="50" height="50"
+                                >
+                            </div>
+                            <div class="cta-request__contacts-item">
+                                <img
+                                        src="data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z' fill='url(%23paint0_linear_2138_3970)'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.3169 24.7359C18.6049 21.5606 23.4647 19.4673 25.8963 18.4559C32.8391 15.5682 34.2817 15.0665 35.222 15.05C35.4288 15.0463 35.8912 15.0976 36.1908 15.3406C36.4437 15.5459 36.5133 15.8231 36.5466 16.0177C36.5799 16.2122 36.6213 16.6555 36.5884 17.0018C36.2121 20.9549 34.5842 30.548 33.756 34.9756C33.4055 36.849 32.7155 37.4772 32.0475 37.5387C30.5957 37.6723 29.4932 36.5792 28.0871 35.6575C25.8868 34.2151 24.6437 33.3173 22.5079 31.9098C20.0397 30.2832 21.6397 29.3893 23.0464 27.9282C23.4145 27.5459 29.8112 21.7276 29.935 21.1998C29.9505 21.1338 29.9649 20.8878 29.8187 20.7578C29.6725 20.6279 29.4568 20.6723 29.3011 20.7077C29.0804 20.7578 25.5653 23.0811 18.7559 27.6776C17.7582 28.3627 16.8545 28.6965 16.0448 28.6791C15.1521 28.6598 13.4351 28.1743 12.1586 27.7594C10.593 27.2505 9.34866 26.9814 9.45702 26.1171C9.51345 25.6669 10.1334 25.2065 11.3169 24.7359Z' fill='white'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_2138_3970' x1='2500' y1='0' x2='2500' y2='4962.92' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%232AABEE'/%3E%3Cstop offset='1' stop-color='%23229ED9'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E "
+                                        alt=""
+                                        class=""
+                                        width="50" height="50"
+                                >
+                            </div>
+                            <div class="cta-request__contacts-item">
+                                <img
+                                        src="data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z' fill='%232CB742'/%3E%3Cpath d='M25.5 11C18.0446 11 12 17.0446 12 24.5C12 27.0326 12.7114 29.3938 13.9248 31.4192L12.1208 38L18.8423 36.2356C20.808 37.3532 23.0773 38 25.5 38C32.9554 38 39 31.9554 39 24.5C39 17.0446 32.9554 11 25.5 11ZM20.8792 18.2026C21.0985 18.2026 21.3239 18.2013 21.5186 18.2114C21.7593 18.2171 22.0213 18.2347 22.2722 18.7893C22.5703 19.4486 23.2195 21.1024 23.3027 21.27C23.386 21.4376 23.445 21.6351 23.3291 21.8545C23.2189 22.0795 23.1615 22.2157 22.9995 22.4148C22.8319 22.6083 22.6482 22.8486 22.4963 22.9949C22.3287 23.1625 22.1556 23.3463 22.3491 23.6804C22.5426 24.0145 23.2146 25.1099 24.208 25.9941C25.4849 27.1349 26.5622 27.4855 26.8975 27.6531C27.2327 27.8207 27.4269 27.7946 27.6204 27.5696C27.8195 27.3502 28.4566 26.5975 28.6816 26.2622C28.901 25.927 29.125 25.985 29.4287 26.0952C29.737 26.2055 31.3808 27.0152 31.7161 27.1829C32.0513 27.3505 32.2711 27.4335 32.3555 27.5696C32.4421 27.7102 32.4422 28.3797 32.1643 29.1604C31.8864 29.94 30.5219 30.694 29.9099 30.7468C29.2923 30.8042 28.7159 31.0244 25.8955 29.9141C22.4935 28.5742 20.348 25.0897 20.1804 24.8647C20.0128 24.6454 18.8181 23.0531 18.8181 21.4106C18.8181 19.7625 19.6822 18.9554 19.9849 18.6201C20.2931 18.2849 20.6542 18.2026 20.8792 18.2026Z' fill='white'/%3E%3C/svg%3E "
+                                        alt=""
+                                        class=""
+                                        width="50" height="50"
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section id="faq" class="faq">
+            <div class="faq__inner container">
+                <div class="faq__body">
+                    <div class="faq__title">
+                        <h5 class="faq__header h5 splitting-text" data-splitting>Будем на связи!</h5>
+                        <p class="faq__subheader p1">
+                            Также как выбранный нами инновационный путь не даёт нам иного выбора, кроме определения инновационных методов управления процессами.
+                        </p>
+                    </div>
+                    <div class="faq__socials-wrapper">
+                        <a href="" class="faq__socials-logo">
+                            <img
+                                    src="data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.1792 40H20.8447C29.8863 40 34.408 40 37.216 37.192C40.024 34.384 40 29.8641 40 20.8447V19.1552C40 10.1376 40 5.61602 37.216 2.80801C34.432 8.04663e-06 29.8863 0 20.8447 0H19.1792C10.136 0 5.616 8.04663e-06 2.80799 2.80801C-1.78814e-06 5.61602 0 10.1344 0 19.1552V20.8447C0 29.8641 -1.78814e-06 34.384 2.80799 37.192C5.616 40 10.136 40 19.1792 40Z' fill='url(%23paint0_linear_2138_4282)'/%3E%3Cpath d='M14.3679 6.49408C12.9208 6.56238 11.9325 6.79416 11.0688 7.13258C10.1748 7.48112 9.41688 7.94822 8.66294 8.70525C7.90812 9.46272 7.44456 10.2219 7.09867 11.1169C6.76378 11.9828 6.53684 12.9716 6.47294 14.4195C6.4095 15.8702 6.39495 16.3328 6.40202 20.0259C6.40907 23.7185 6.42536 24.1821 6.49454 25.6331C6.56371 27.0798 6.79463 28.0677 7.13304 28.9318C7.48203 29.8259 7.94865 30.5833 8.70611 31.3377C9.46313 32.0921 10.2228 32.5552 11.1182 32.9016C11.9832 33.236 12.9724 33.4639 14.4199 33.5273C15.8705 33.5912 16.3336 33.6053 20.0257 33.5983C23.7196 33.5912 24.1828 33.5749 25.6333 33.5062C27.0804 33.437 28.0679 33.2052 28.9324 32.8677C29.8265 32.5178 30.5844 32.052 31.3383 31.2946C32.0922 30.5375 32.5558 29.7778 32.9017 28.8825C33.2366 28.0175 33.4644 27.0282 33.5274 25.5816C33.5909 24.1301 33.6059 23.6665 33.5988 19.9739C33.5917 16.2808 33.575 15.8182 33.5063 14.368C33.4375 12.92 33.2057 11.9325 32.8678 11.068C32.5184 10.1739 32.0522 9.41689 31.2951 8.66207C30.5381 7.90812 29.7784 7.44367 28.8831 7.09865C28.0176 6.76376 27.0288 6.5355 25.5813 6.47293C24.1307 6.40859 23.6676 6.3945 19.9742 6.40155C16.2816 6.4086 15.8185 6.42446 14.3679 6.49408ZM14.5266 31.0795C13.2006 31.0218 12.4807 30.8015 12.0008 30.6168C11.3654 30.371 10.912 30.0762 10.4348 29.6025C9.95842 29.127 9.66274 28.6749 9.41467 28.0408C9.22826 27.5609 9.00399 26.8418 8.94186 25.5159C8.87444 24.0825 8.85903 23.6524 8.85241 20.021C8.84536 16.3906 8.85857 15.9605 8.92115 14.5258C8.97798 13.2007 9.19965 12.4798 9.38382 12.0004C9.62969 11.3641 9.92359 10.9116 10.3982 10.4343C10.8736 9.95712 11.3257 9.66233 11.9602 9.41425C12.4397 9.22696 13.1588 9.00444 14.4842 8.94144C15.9185 8.87357 16.3481 8.85903 19.9786 8.85198C23.6099 8.84492 24.04 8.85771 25.4747 8.92073C26.7997 8.97844 27.5206 9.19789 27.9996 9.3834C28.6354 9.62927 29.0888 9.92231 29.5656 10.3978C30.0424 10.8732 30.3381 11.3244 30.5861 11.9603C30.7734 12.4384 30.9959 13.1584 31.0585 14.4834C31.1268 15.9178 31.1422 16.3478 31.1488 19.9783C31.1559 23.6097 31.1427 24.0397 31.0796 25.4736C31.0219 26.7995 30.802 27.52 30.617 28.0003C30.3711 28.6352 30.0772 29.0887 29.6022 29.5659C29.1272 30.0414 28.6751 30.3379 28.0401 30.586C27.5616 30.7728 26.8416 30.9958 25.517 31.0588C24.0827 31.1262 23.6531 31.1416 20.0213 31.1483C16.3909 31.1553 15.9613 31.1416 14.5266 31.0795ZM25.6135 12.7301C25.6153 13.6308 26.3476 14.3601 27.2483 14.3583C28.1494 14.3565 28.8787 13.6246 28.8773 12.7239C28.8756 11.8233 28.1432 11.0936 27.2421 11.0953C26.341 11.0971 25.6117 11.8294 25.6135 12.7301ZM13.0174 20.0131C13.0248 23.8701 16.1574 26.9899 20.0134 26.9824C23.8699 26.9749 26.9914 23.8432 26.9839 19.9862C26.9764 16.1306 23.8435 13.009 19.9865 13.0165C16.1305 13.024 13.0099 16.157 13.0174 20.0131ZM15.4669 20.0083C15.4625 17.505 17.4885 15.4714 19.9914 15.467C22.4947 15.4621 24.5286 17.4873 24.5335 19.9911C24.5384 22.4948 22.5123 24.528 20.0086 24.5328C17.5057 24.5377 15.4717 22.512 15.4669 20.0083Z' fill='white'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_2138_4282' x1='20' y1='0' x2='20' y2='40' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23C51EA9'/%3E%3Cstop offset='0.293269' stop-color='%23D22097'/%3E%3Cstop offset='0.698907' stop-color='%23E75D5A'/%3E%3Cstop offset='1' stop-color='%23F2A328'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E "
+                                    alt="Instagram"
+                                    class="cta__logo"
+                                    width="40" height="40"
+                            >
+                        </a>
+                        <a href="" class="faq__socials-logo">
+                            <img
+                                    src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M16%2032C24.8366%2032%2032%2024.8366%2032%2016C32%207.16344%2024.8366%200%2016%200C7.16344%200%200%207.16344%200%2016C0%2024.8366%207.16344%2032%2016%2032Z'%20fill='url(%23paint0_linear_54_639)'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M7.24285%2015.8311C11.9072%2013.7989%2015.0175%2012.4591%2016.5737%2011.8119C21.0171%209.9637%2021.9404%209.64266%2022.5421%209.63206C22.6745%209.62973%2022.9704%209.66253%2023.1621%209.81808C23.324%209.94942%2023.3685%2010.1269%2023.3899%2010.2514C23.4112%2010.3759%2023.4377%2010.6596%2023.4166%2010.8812C23.1758%2013.4112%2022.1339%2019.5508%2021.6039%2022.3844C21.3796%2023.5834%2020.938%2023.9855%2020.5104%2024.0248C19.5813%2024.1103%2018.8757%2023.4108%2017.9758%2022.8208C16.5676%2021.8977%2015.7721%2021.3231%2014.4051%2020.4223C12.8254%2019.3813%2013.8495%2018.8092%2014.7498%2017.8741C14.9854%2017.6294%2019.0792%2013.9058%2019.1585%2013.568C19.1684%2013.5257%2019.1776%2013.3682%2019.084%2013.2851C18.9905%2013.2019%2018.8524%2013.2304%2018.7527%2013.253C18.6115%2013.285%2016.3619%2014.772%2012.0038%2017.7137C11.3653%2018.1522%2010.7869%2018.3659%2010.2687%2018.3547C9.69743%2018.3423%208.59851%2018.0317%207.78158%2017.7661C6.77957%2017.4404%205.9832%2017.2682%206.05255%2016.715C6.08867%2016.4269%206.48544%2016.1322%207.24285%2015.8311Z'%20fill='white'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_54_639'%20x1='1600'%20y1='0'%20x2='1600'%20y2='3176.27'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%232AABEE'/%3e%3cstop%20offset='1'%20stop-color='%23229ED9'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+                                    alt="Telegram"
+                                    class="faq__logo"
+                                    width="40" height="40"
+                            >
+                        </a>
+                        <a href="" class="faq__socials-logo">
+                            <img
+                                    src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M15.3434%2032H16.6758C23.9091%2032%2027.5264%2032%2029.7728%2029.7536C32.0192%2027.5072%2032%2023.8913%2032%2016.6758V15.3242C32%208.11008%2032%204.49281%2029.7728%202.24641C27.5456%206.4373e-06%2023.9091%200%2016.6758%200H15.3434C8.1088%200%204.4928%206.4373e-06%202.24639%202.24641C-1.43051e-06%204.49281%200%208.10753%200%2015.3242V16.6758C0%2023.8913%20-1.43051e-06%2027.5072%202.24639%2029.7536C4.4928%2032%208.1088%2032%2015.3434%2032Z'%20fill='%230077FF'/%3e%3cpath%20d='M17.1722%2023.0717C9.95684%2023.0717%205.57796%2018.0656%205.40771%209.74687H9.06212C9.17604%2015.8576%2011.9562%2018.4509%2014.0874%2018.9795V9.74687H17.5908V15.0192C19.6464%2014.7914%2021.7969%2012.3926%2022.5213%209.74687H25.9658C25.4141%2013.0019%2023.073%2015.4006%2021.4167%2016.3901C23.073%2017.1901%2025.738%2019.2842%2026.7658%2023.0717H22.9783C22.1783%2020.5398%2020.2174%2018.5789%2017.5908%2018.3126V23.0717H17.1722Z'%20fill='white'/%3e%3c/svg%3e"
+                                    alt="Вконтакте"
+                                    class="faq__logo"
+                                    width="40" height="40"
+                            >
+                        </a>
+                    </div>
+                    <div class="faq__form-wrapper decorative-lines__wrapper">
+                        <form 
+                            action="/" 
+                            method="post" 
+                            class="faq__form"
+                            id="form-feedback" 
+                            data-url="{% url 'post_feedback' %}"
+                            data-feedback-form
+                            >
+                            {% csrf_token %}
+                            <div class="faq__fields">
+                                <div class="faq__row">
+                                    <div class="faq__cell">
+                                        <input
+                                                type="text"
+                                                class="faq__cell-input"
+                                                placeholder="Имя"
+                                                required name="name"
+                                                minlength="2"
+                                                maxlength="50"
+                                        />
+                                    </div>
+                                    <div class="faq__cell">
+                                        <input
+                                                type="tel"
+                                                name="phone"
+                                                class="faq__cell-input"
+                                                placeholder="Номер телефона"
+                                                pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}"
+                                                data-phone
+                                                required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="faq__cell--long">
+                                    <input
+                                            class="faq__cell-input--long"
+                                            placeholder="Уточните свой вопрос"
+                                            name="message"
+                                            maxlength="300" 
+                                    />
+                                </div>
+                                <div class="policy">
+                                    <input type="checkbox" class="policy__checkbox" name="" checked>
+                                    <label for="policy" class="policy__label">
+                                        С правилами <a href="/">политики конфиденциальности</a> ознакомлен
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="faq__action">
+                                <button type="submit" class="button faq__button"><span>Оставить заявку</span></button>
+                            </div>
+                        </form>
+                        <div class="decorative-lines">
+                            <span class="decorative-lines__item"></span>
+                            <span class="decorative-lines__item"></span>
+                            <span class="decorative-lines__item"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="faq__questions">
+                    {% for quest in questions %}
+                        <details class="faq__item">
+                            <summary class="faq__legend">
+                                {{ quest.question }}
+                            </summary>
+                            <p class="faq__content">{{ quest.answer }}</p>
+                        </details>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+
+        <div class="modal">
+            <div class="modal__overlay"></div>
+            <div class="modal__wrapper">
+                <div class="modal__content">
+                    <button class="modal__close modal__close-button"></button>
+                    <div class="modal__header">
+                        <h4 class="modal__title">Оставьте <span>заявку!</span></h4>
+                        <p class="modal__subtitle">Мы перезвоним вам в течение 15 минут, чтобы уточнить детали и рассчитать стоимость</p>
+                    </div>
+
+                    <form
+                        class="modal__form"
+                        action="/" 
+                        method="post" 
+                        id="form-feedback" 
+                        data-url="{% url 'post_feedback' %}"
+                        data-feedback-form
+                        >
+                        {% csrf_token %}
+                        <div class="modal__form-row">
+                            <div class="modal__form-cell">
+                                <input
+                                        class="modal__form-input"
+                                        placeholder="Имя"
+                                        type="text"
+                                        name="name"
+                                        minlength="2"
+                                        maxlength="50"
+                                        required
+                                />
+                            </div>
+                            <div class="modal__form-cell">
+                                <input
+                                        class="modal__form-input"
+                                        placeholder="Номер телефона"
+                                        pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}"
+                                        type="tel"
+                                        name="phone"
+                                        data-phone
+                                        required
+                                />
+                            </div>
+                        </div>
+                        <div class="modal__form-cell--long">
+                            <input
+                                    class="modal__form-input--long"
+                                    placeholder="Уточните свой вопрос"
+                                    name="message"
+                                    maxlength="300" 
+                            />
+                        </div>
+                        <div class="modal__policy policy">
+                            <input type="checkbox" class="policy__checkbox" name="" checked>
+                            <label for="policy" class="policy__label">
+                                С правилами <a href="/">политики конфиденциальности</a> ознакомлен
+                            </label>
+                        </div>
+                        <button type="submit" class="modal__button button">Оставить заявку</button>
+                    </form>
+                </div>
+                <div class="decorative-lines">
+                    <span class="decorative-lines__item"></span>
+                    <span class="decorative-lines__item"></span>
+                    <span class="decorative-lines__item"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-success" id='success'>
+            <div class="modal-success__overlay"></div>
+            <div class="modal-success__wrapper">
+                <div class="modal-success__content">
+                    <button class="modal-success__close modal-success__close-button"></button>
+                    <img 
+                        src="{% static 'pages/icons/success.svg' %}" 
+                        alt="Успех" 
+                        class="modal-success__image"
+                        width="72"
+                        height="72"
+                        loading="lazy"
+                    >
+                    <div class="modal-success__header">
+                        <h4 class="modal-success__title">Отлично!</h4>
+                        <p class="modal-success__subtitle">Спасибо за вашу заявку! Наш менеджер в скором времени свяжется с вами!</p>
+                    </div>
+                    <button class="button modal-success__button modal-success__close hidden-tablet">На главную</button>
+                </div>
+                <div class="decorative-lines">
+                    <span class="decorative-lines__item"></span>
+                    <span class="decorative-lines__item"></span>
+                    <span class="decorative-lines__item"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__inner container">
+            <div class="footer__body">
+                <div class="footer__info">
+                    <a href="#top">
+                        <img
+                                src="{% static "pages/icons/logo.svg" %}"
+                                alt="Чистота ДВ"
+                                class="footer__logo"
+                                width="163" height="26"
+                        >
+                    </a>
+                    <p class="p1 footer__title">Ясность нашей позиции очевидна: высокое качество позиционных исследований играет определяющее значение для системы массового участия</p>
+                    <div class="footer__socials-wrapper">
+                        <a href="" class="footer__socials-logo">
+                            <img
+                                    src="data:image/svg+xml,%3csvg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M23.974 50H26.0559C37.3579 50 43.01 50 46.52 46.49C50.03 42.98 50 37.3301 50 26.0559V23.944C50 12.672 50 7.02002 46.52 3.51001C43.04 1.00583e-05 37.3579 0 26.0559 0H23.974C12.67 0 7.01999 1.00583e-05 3.50998 3.51001C-2.23517e-06 7.02002 0 12.668 0 23.944V26.0559C0 37.3301 -2.23517e-06 42.98 3.50998 46.49C7.01999 50 12.67 50 23.974 50Z' fill='url(%23paint0_linear_2138_4491)'/%3e%3cpath d='M17.9594 8.11772C16.1506 8.2031 14.9151 8.49282 13.8355 8.91585C12.718 9.35152 11.7706 9.9354 10.8282 10.8817C9.88466 11.8285 9.30521 12.7776 8.87285 13.8963C8.45424 14.9786 8.17057 16.2146 8.09069 18.0246C8.01139 19.8378 7.9932 20.4162 8.00204 25.0325C8.01084 29.6483 8.03122 30.2277 8.11769 32.0415C8.20415 33.8498 8.4928 35.0847 8.91582 36.1649C9.35205 37.2825 9.93532 38.2293 10.8821 39.1723C11.8284 40.1153 12.778 40.6942 13.8972 41.1271C14.9785 41.5452 16.215 41.8299 18.0244 41.9093C19.8376 41.9891 20.4165 42.0067 25.0317 41.9979C29.649 41.9891 30.228 41.9687 32.0412 41.8828C33.85 41.7963 35.0843 41.5066 36.165 41.0847C37.2826 40.6474 38.23 40.0652 39.1724 39.1183C40.1148 38.172 40.6942 37.2224 41.1266 36.1032C41.5453 35.0219 41.83 33.7854 41.9088 31.9771C41.9881 30.1627 42.0068 29.5833 41.998 24.9675C41.9892 20.3512 41.9683 19.7728 41.8823 17.9601C41.7964 16.1502 41.5067 14.9158 41.0842 13.8351C40.6475 12.7175 40.0647 11.7712 39.1184 10.8277C38.1721 9.88527 37.2226 9.30471 36.1033 8.87344C35.0216 8.45482 33.7856 8.16949 31.9762 8.09128C30.1629 8.01086 29.5841 7.99325 24.9672 8.00206C20.3515 8.01087 19.7727 8.0307 17.9594 8.11772ZM18.1577 38.8495C16.5003 38.7774 15.6003 38.502 15.0005 38.2712C14.2062 37.9638 13.6395 37.5953 13.043 37.0032C12.4475 36.4089 12.0779 35.8438 11.7678 35.0511C11.5348 34.4513 11.2545 33.5524 11.1768 31.895C11.0926 30.1032 11.0733 29.5656 11.065 25.0264C11.0562 20.4883 11.0727 19.9507 11.151 18.1573C11.222 16.501 11.4991 15.5999 11.7293 15.0006C12.0366 14.2052 12.404 13.6396 12.9972 13.0431C13.5915 12.4465 14.1567 12.078 14.9498 11.7679C15.5491 11.5338 16.448 11.2557 18.1048 11.1769C19.8977 11.0921 20.4347 11.0739 24.9727 11.0651C29.5119 11.0563 30.0495 11.0723 31.8429 11.151C33.4991 11.2232 34.4002 11.4975 34.999 11.7294C35.7938 12.0367 36.3605 12.403 36.9565 12.9973C37.5525 13.5917 37.9221 14.1557 38.2322 14.9505C38.4663 15.5481 38.7444 16.4481 38.8226 18.1044C38.908 19.8973 38.9273 20.4349 38.9355 24.973C38.9443 29.5122 38.9278 30.0498 38.8491 31.8421C38.7769 33.4995 38.5021 34.4001 38.2707 35.0005C37.9634 35.7942 37.596 36.361 37.0022 36.9575C36.4085 37.5518 35.8434 37.9225 35.0496 38.2326C34.4515 38.4661 33.5515 38.7449 31.8958 38.8236C30.1029 38.9079 29.5659 38.9272 25.0262 38.9354C20.4881 38.9443 19.9511 38.9272 18.1577 38.8495ZM32.0164 15.9128C32.0186 17.0386 32.934 17.9502 34.0599 17.948C35.1862 17.9458 36.0978 17.0309 36.0962 15.9051C36.094 14.7792 35.1785 13.8671 34.0522 13.8693C32.9258 13.8715 32.0142 14.7869 32.0164 15.9128ZM16.2712 25.0165C16.2806 29.8377 20.1962 33.7375 25.0163 33.7281C29.8369 33.7187 33.7387 29.8041 33.7294 24.9829C33.72 20.1634 29.8038 16.2614 24.9827 16.2708C20.1626 16.2802 16.2618 20.1964 16.2712 25.0165ZM19.3331 25.0105C19.3276 21.8813 21.8602 19.3393 24.9887 19.3338C28.1178 19.3278 30.6603 21.8593 30.6664 24.989C30.6725 28.1187 28.1399 30.6601 25.0102 30.6662C21.8817 30.6722 19.3391 28.1402 19.3331 25.0105Z' fill='white'/%3e%3cdefs%3e%3clinearGradient id='paint0_linear_2138_4491' x1='25' y1='0' x2='25' y2='50' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%23C51EA9'/%3e%3cstop offset='0.293269' stop-color='%23D22097'/%3e%3cstop offset='0.698907' stop-color='%23E75D5A'/%3e%3cstop offset='1' stop-color='%23F2A328'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+                                    alt="Instagram"
+                                    class="cta__logo"
+                                    width="40" height="40"
+                            >
+                        </a>
+                        <a href="" class="footer__socials-logo">
+                            <img
+                                    src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M16%2032C24.8366%2032%2032%2024.8366%2032%2016C32%207.16344%2024.8366%200%2016%200C7.16344%200%200%207.16344%200%2016C0%2024.8366%207.16344%2032%2016%2032Z'%20fill='url(%23paint0_linear_54_639)'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M7.24285%2015.8311C11.9072%2013.7989%2015.0175%2012.4591%2016.5737%2011.8119C21.0171%209.9637%2021.9404%209.64266%2022.5421%209.63206C22.6745%209.62973%2022.9704%209.66253%2023.1621%209.81808C23.324%209.94942%2023.3685%2010.1269%2023.3899%2010.2514C23.4112%2010.3759%2023.4377%2010.6596%2023.4166%2010.8812C23.1758%2013.4112%2022.1339%2019.5508%2021.6039%2022.3844C21.3796%2023.5834%2020.938%2023.9855%2020.5104%2024.0248C19.5813%2024.1103%2018.8757%2023.4108%2017.9758%2022.8208C16.5676%2021.8977%2015.7721%2021.3231%2014.4051%2020.4223C12.8254%2019.3813%2013.8495%2018.8092%2014.7498%2017.8741C14.9854%2017.6294%2019.0792%2013.9058%2019.1585%2013.568C19.1684%2013.5257%2019.1776%2013.3682%2019.084%2013.2851C18.9905%2013.2019%2018.8524%2013.2304%2018.7527%2013.253C18.6115%2013.285%2016.3619%2014.772%2012.0038%2017.7137C11.3653%2018.1522%2010.7869%2018.3659%2010.2687%2018.3547C9.69743%2018.3423%208.59851%2018.0317%207.78158%2017.7661C6.77957%2017.4404%205.9832%2017.2682%206.05255%2016.715C6.08867%2016.4269%206.48544%2016.1322%207.24285%2015.8311Z'%20fill='white'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_54_639'%20x1='1600'%20y1='0'%20x2='1600'%20y2='3176.27'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%232AABEE'/%3e%3cstop%20offset='1'%20stop-color='%23229ED9'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+                                    alt="Telegram"
+                                    class="footer__logo"
+                                    width="40" height="40"
+                            >
+                        </a>
+                        <a href="" class="footer__socials-logo">
+                            <img
+                                    src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M15.3434%2032H16.6758C23.9091%2032%2027.5264%2032%2029.7728%2029.7536C32.0192%2027.5072%2032%2023.8913%2032%2016.6758V15.3242C32%208.11008%2032%204.49281%2029.7728%202.24641C27.5456%206.4373e-06%2023.9091%200%2016.6758%200H15.3434C8.1088%200%204.4928%206.4373e-06%202.24639%202.24641C-1.43051e-06%204.49281%200%208.10753%200%2015.3242V16.6758C0%2023.8913%20-1.43051e-06%2027.5072%202.24639%2029.7536C4.4928%2032%208.1088%2032%2015.3434%2032Z'%20fill='%230077FF'/%3e%3cpath%20d='M17.1722%2023.0717C9.95684%2023.0717%205.57796%2018.0656%205.40771%209.74687H9.06212C9.17604%2015.8576%2011.9562%2018.4509%2014.0874%2018.9795V9.74687H17.5908V15.0192C19.6464%2014.7914%2021.7969%2012.3926%2022.5213%209.74687H25.9658C25.4141%2013.0019%2023.073%2015.4006%2021.4167%2016.3901C23.073%2017.1901%2025.738%2019.2842%2026.7658%2023.0717H22.9783C22.1783%2020.5398%2020.2174%2018.5789%2017.5908%2018.3126V23.0717H17.1722Z'%20fill='white'/%3e%3c/svg%3e"
+                                    alt="Вконтакте"
+                                    class="footer__logo"
+                                    width="40" height="40"
+                            >
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__nav">
+                    <div class="footer__list-wrapper">
+                        <p class="p2 footer__list-title">
+                            О компании
+                        </p>
+                        <ul class="footer__list">
+                            <li class="p3 footer__list-item"><a href="#about">О компании</a></li>
+                            <li class="p3 footer__list-item"><a href="#service">Услуги</a></li>
+                            <li class="p3 footer__list-item"><a href="#cases">Кейсы</a></li>
+                            <li class="p3 footer__list-item"><a href="#faq">Контакты</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__list-wrapper">
+                        <p class="p2 footer__list-title">
+                            Контакты
+                        </p>
+                        <ul class="footer__list">
+                            <li class="p3 footer__list-item">
+                                <img
+                                        src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_126_211)'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M0.875%202.625C0.875%201.6585%201.6585%200.875%202.625%200.875H3.42512C3.927%200.875%204.36448%201.21658%204.48621%201.70348L5.13126%204.28367C5.23799%204.71059%205.07846%205.1599%204.72641%205.42394L3.9718%205.9899C3.89344%206.04867%203.87641%206.13473%203.89842%206.19482C4.5608%208.00303%205.99697%209.4392%207.80518%2010.1016C7.86527%2010.1236%207.95133%2010.1066%208.0101%2010.0282L8.57606%209.27359C8.8401%208.92154%209.28941%208.76201%209.71633%208.86874L12.2965%209.51379C12.7834%209.63552%2013.125%2010.073%2013.125%2010.5749V11.375C13.125%2012.3415%2012.3415%2013.125%2011.375%2013.125H10.0625C4.98838%2013.125%200.875%209.01162%200.875%203.9375V2.625Z'%20fill='%230060DF'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_126_211'%3e%3crect%20width='14'%20height='14'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e"
+                                        alt=""
+                                        class="footer__logo"
+                                        width="14" height="14"
+                                >
+                                <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a>
+                            </li>
+                            <li class="p3 footer__list-item">
+                                <img
+                                        src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M6.73152%2013.0381C6.74914%2013.0483%206.76299%2013.0562%206.77279%2013.0617L6.78908%2013.0708C6.91909%2013.1422%207.08036%2013.1416%207.21049%2013.071L7.22721%2013.0617C7.23701%2013.0562%207.25086%2013.0483%207.26848%2013.0381C7.30372%2013.0177%207.35407%2012.9879%207.41738%2012.9489C7.54394%2012.871%207.7226%2012.7561%207.93602%2012.6053C8.36214%2012.3043%208.93069%2011.8577%209.50048%2011.2743C10.6346%2010.1132%2011.8125%208.36859%2011.8125%206.125C11.8125%203.46713%209.65787%201.3125%207%201.3125C4.34213%201.3125%202.1875%203.46713%202.1875%206.125C2.1875%208.36859%203.36544%2010.1132%204.49952%2011.2743C5.06931%2011.8577%205.63786%2012.3043%206.06398%2012.6053C6.2774%2012.7561%206.45606%2012.871%206.58262%2012.9489C6.64593%2012.9879%206.69628%2013.0177%206.73152%2013.0381ZM7%207.875C7.9665%207.875%208.75%207.0915%208.75%206.125C8.75%205.1585%207.9665%204.375%207%204.375C6.0335%204.375%205.25%205.1585%205.25%206.125C5.25%207.0915%206.0335%207.875%207%207.875Z'%20fill='%230060DF'/%3e%3c/svg%3e"
+                                        alt=""
+                                        class="footer__logo"
+                                        width="14" height="14"
+                                >
+                                {{ contact.address }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer__extra">
+                <div class="footer__extra-info">
+                    <a href="" class="footer__extra-policy">Политика конфиденциальности</a>
+                    <p class="footer__extra-copyright">© 2025 ЧИСТОТА ДВ. Все права защищены</p>
+                </div>
+                <p class="footer__extra-title">Чистота ДВ</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
