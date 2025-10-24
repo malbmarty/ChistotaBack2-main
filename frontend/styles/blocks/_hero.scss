@@ -204,6 +204,7 @@
       line-height: normal;
       font-weight: 500;
       color: var(--color-white);
+      text-transform: uppercase;
 
       @include tablet{
         font-size: rem(16);
