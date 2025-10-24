@@ -1,114 +1,137 @@
 import { Splide } from '@splidejs/splide';
-import '@splidejs/splide/css';
 
 export function initTeamSlider() {
-    const splideElement = document.querySelector('.team__splide');
-    
-    if (!splideElement) return;
-
     const splide = new Splide('.team__splide', {
-        type: 'loop',
-        perPage: 1,
+        type: 'slide',
+        rewind: false,
+        fixedWidth: 783,
+        fixedHeight: 560,
         perMove: 1,
-        gap: 0, // Меняем на 0 чтобы не было margin-right
         arrows: false,
         pagination: false,
         trimSpace: false,
-        updateOnMove: true,
-        autoWidth: false,
-        autoHeight: false,
-        fixedWidth: null,
-        fixedHeight: null,
-        height: null,
-        rewind: false,
+        gap: '-400px',
         classes: {
             slide: 'team__splide-slide splide__slide',
+            active: 'is-active',
+            visible: 'is-visible',
         },
+
+
         breakpoints: {
-            768: {
-                destroy: true
+            1300: {
+                fixedWidth: 300,
+                fixedHeight: 470,
+                gap: '-200px',
+            },
+        }
+    });
+
+    function updateSlideStates() {
+        const slides = document.querySelectorAll('.team__splide-slide');
+        const activeIndex = splide.index;
+
+        slides.forEach((slide, index) => {
+            const activeInner = slide.querySelector('.slide-inner--active');
+            const deactiveInner = slide.querySelector('.slide-inner--deactive');
+
+            if (!activeInner || !deactiveInner) return;
+
+            if (index === activeIndex) {
+            activeInner.classList.add('is-active');
+            activeInner.classList.remove('is-hidden');
+
+            deactiveInner.classList.add('is-hidden');
+            deactiveInner.classList.remove('is-active');
+            } else {
+            activeInner.classList.remove('is-active');
+            activeInner.classList.add('is-hidden');
+
+            deactiveInner.classList.remove('is-hidden');
+            deactiveInner.classList.add('is-active');
             }
-        }
-    });
-
-    function updateSlider() {
-        const current = splide.index + 1;
-        const total = splide.length;
-        const counter = document.querySelector('.team__controls-current');
-        
-        if (counter) {
-            counter.textContent = `${current.toString().padStart(2, '0')}/${total.toString().padStart(2, '0')}`;
-        }
-
-        // Убираем is-visible у всех
-        document.querySelectorAll('.team__splide-slide').forEach(slide => {
-            slide.classList.remove('is-visible');
         });
-        
-        // Добавляем is-visible активному слайду
-        const activeSlide = document.querySelector('.team__splide-slide.is-active');
-        if (activeSlide) {
-            activeSlide.classList.add('is-visible');
-        }
     }
+    
 
-    // Убираем inline стили после инициализации
-    splide.on('mounted', () => {
-        updateSlider();
-        removeInlineStyles();
-        startStyleObserver(); // Запускаем наблюдатель
-    });
+    function updateSlidePositions() {
+        const slides = document.querySelectorAll('.team__splide-slide');
+        const activeIndex = splide.index;
 
-    splide.on('moved', () => {
-        updateSlider();
-        removeInlineStyles();
-    });
+        slides.forEach((slide, index) => {
+            slide.classList.remove('slide-offset', 'slide-previous');
 
-    // Функция для удаления inline стилей
-    function removeInlineStyles() {
-        document.querySelectorAll('.team__splide-slide').forEach(slide => {
-            slide.style.width = '';
-            slide.style.marginRight = '';
-            slide.style.height = '';
+            if (index < activeIndex) {
+                slide.classList.add('slide-previous');
+            } else if (index > activeIndex) {
+                slide.classList.add('slide-offset');
+            }
         });
     }
 
-    // Наблюдатель за изменениями стилей
-    function startStyleObserver() {
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                    const slide = mutation.target;
-                    if (slide.classList.contains('team__splide-slide')) {
-                        // Ждем немного и убираем стили
-                        setTimeout(() => {
-                            slide.style.width = '';
-                            slide.style.marginRight = '';
-                        }, 10);
-                    }
-                }
-            });
-        });
+    function updateSlideTransforms() {
+        const slides = document.querySelectorAll('.team__splide-slide');
+        const activeIndex = splide.index;
 
-        // Наблюдаем за всеми слайдами
-        document.querySelectorAll('.team__splide-slide').forEach(slide => {
-            observer.observe(slide, { 
-                attributes: true, 
-                attributeFilter: ['style'] 
-            });
+        slides.forEach((slide, index) => {
+            const offset = index - activeIndex;
+
+            const scaleX = offset === 0 ? 1 : 0.410;
+            const scaleY = offset === 0 ? 1 : 0.786;
+            const translate = 0;
+
+            inner.style.setProperty('--scale-x', scaleX);
+            inner.style.setProperty('--scale-y', scaleY);
+
+            const inner = slide.querySelector('.slide-inner--deactive');
+            if (inner) {
+                inner.style.transform = `translateX(${translate}px) scaleX(${scaleX}) scaleY(${scaleY})`;
+                //inner.style.transform = `translateX(${translate}px)`;
+                inner.style.zIndex = 100 - Math.abs(offset);
+            }
         });
     }
+
+    function initCustomControls() {
+        const prevButton = document.getElementById('teamBtnPrev');
+        const nextButton = document.getElementById('teamBtnNext');
+        const currentIndicator = document.querySelector('.team__controls-current');
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => splide.go('<'));
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => splide.go('>'));
+        }
+
+        if (currentIndicator) {
+            updateCurrentIndicator();
+            splide.on('moved', updateCurrentIndicator);
+        }
+    }
+
+    function updateCurrentIndicator() {
+        const currentIndicator = document.querySelector('.team__controls-current');
+        if (currentIndicator) {
+            currentIndicator.innerHTML = `0${splide.index + 1} / <span>0${splide.length}</span>`;
+        }
+    }
+
+
+    splide.on('mounted move', () => {
+        updateSlidePositions();
+        updateSlideTransforms();
+        // updateSlideStates();
+    });
+
+    splide.on('mounted moved', () => {
+        updateSlideStates();
+    });
 
     splide.mount();
 
-    // Кастомные стрелки
-    const btnPrev = document.getElementById('teamBtnPrev');
-    const btnNext = document.getElementById('teamBtnNext');
-
-    if (btnPrev && btnNext) {
-        btnPrev.addEventListener('click', () => splide.go('-1'));
-        btnNext.addEventListener('click', () => splide.go('+1'));
-    }
+    initCustomControls();
 
     return splide;
 }

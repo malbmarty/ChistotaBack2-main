@@ -55,7 +55,7 @@
 
     @include mobile {
       width: 100%;
-      height: rem(487);
+      height: auto;
       background: url("images/cta/background-m.png") 0 0 / cover no-repeat;
       border-radius: rem(32);
       gap: 0;
@@ -98,7 +98,6 @@
       letter-spacing: normal;
       margin-top: rem(40);
       margin-bottom: 0;
-      height: rem(163);
     }
   }
 
@@ -155,6 +154,7 @@
 
       @include mobile {
         column-gap: rem(24);
+        margin-bottom: rem(40);
       }
 
 

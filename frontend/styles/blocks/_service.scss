@@ -13,8 +13,10 @@
   }
 
   &__header{
-    line-height: rem(35);
-    margin-bottom: rem(24);
+    span {
+      line-height: 1;
+    }
+    margin-bottom: rem(5);
 
     @include tablet{
       margin-bottom: rem(24);
@@ -172,7 +174,7 @@
       font-weight: 500;
       font-size: rem(40);
       color: var(--color-white);
-      line-height: normal;
+      line-height: 1;
 
       @include tablet{
         font-size: rem(28);
@@ -187,7 +189,7 @@
       font-weight: 400;
       font-size: rem(24);
       font-family: var(--font-family-accent);
-      line-height: normal;
+      line-height: 100%;
       color: var(--color-gray-50);
 
       // @include laptop {
@@ -203,7 +205,7 @@
 
         &.collapsed {
           display: -webkit-box;
-          -webkit-line-clamp: 3;
+          -webkit-line-clamp: 4;
           -webkit-box-orient: vertical;
           overflow: hidden;
           cursor: pointer;
@@ -215,18 +217,13 @@
       }
 
       @include mobile {
-
-        &.collapsed {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          cursor: pointer;
-        }
-
-        &.expanded {
-          cursor: pointer;
-        }
+        font-size: rem(20);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; 
+        -webkit-box-orient: vertical;
+        line-height: 1.2; 
       }
     }
 
@@ -252,7 +249,7 @@
         font-weight: 500;
         font-family: var(--font-family);
         font-size: rem(16);
-        line-height: rem(21);
+        line-height: 1;
         color: var(--color-white);
 
         @include mobile {
@@ -311,7 +308,7 @@
 
   &__price{
     font-weight: 500;
-    line-height: rem(17);
+    line-height: 1;
     font-size: rem(24);
     color: var(--color-black);
     text-transform: uppercase;

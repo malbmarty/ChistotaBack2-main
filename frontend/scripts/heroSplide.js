@@ -4,13 +4,13 @@ export function initHeroSlider() {
     const splide = new Splide('.hero__splide', {
         type: 'slide',
         rewind: false,
-        fixedWidth: 473,
-        fixedHeight: 689,
+        fixedWidth: 322,
+        fixedHeight: 504,
         perMove: 1,
         arrows: false,
         pagination: false,
         trimSpace: false,
-        gap: '-240px',
+        gap: '-150px',
         classes: {
             slide: 'hero__splide-slide splide__slide',
             active: 'is-active',
@@ -20,9 +20,9 @@ export function initHeroSlider() {
 
         breakpoints: {
             1300: {
-                fixedWidth: 447,
-                fixedHeight: 650,
-                gap: '-230px',
+                fixedWidth: 300,
+                fixedHeight: 470,
+                gap: '-140px',
             },
         }
     });
@@ -63,15 +63,41 @@ export function initHeroSlider() {
         slides.forEach((slide, index) => {
             const offset = index - activeIndex;
 
-            const scale = Math.max(0.6, 1 - Math.abs(offset) * 0.2);
-            const translate = offset * 300;
+            const scaleY = offset === 0 ? 1 : 0.873;
+            const translate = offset * 170;
 
             const inner = slide.querySelector('.hero__splide-slide-inner');
             if (inner) {
-                inner.style.transform = `translateX(${translate}px) scale(${scale})`;
+                inner.style.transform = `translateX(${translate}px) scaleY(${scaleY})`;
                 inner.style.zIndex = 100 - Math.abs(offset);
             }
         });
+    }
+
+    function initCustomControls() {
+        const prevButton = document.getElementById('heroBtnPrev');
+        const nextButton = document.getElementById('heroBtnNext');
+        const currentIndicator = document.querySelector('.hero__controls-current');
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => splide.go('<'));
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => splide.go('>'));
+        }
+
+        if (currentIndicator) {
+            updateCurrentIndicator();
+            splide.on('moved', updateCurrentIndicator);
+        }
+    }
+
+    function updateCurrentIndicator() {
+        const currentIndicator = document.querySelector('.hero__controls-current');
+        if (currentIndicator) {
+            currentIndicator.innerHTML = `0${splide.index + 1} / <span>0${splide.length}</span>`;
+        }
     }
 
 
@@ -83,5 +109,8 @@ export function initHeroSlider() {
     });
 
     splide.mount();
+
+    initCustomControls();
+
     return splide;
 }

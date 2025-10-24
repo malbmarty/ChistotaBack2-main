@@ -125,8 +125,7 @@
                         <div class="hero__body">
                             <div class="hero__header-inner">
                                 <h3 class="hero__header splitting-text" data-splitting>
-                                    С нами у вас всегда <br>
-                                    <span class="hero__header-print"></span>
+                                    С нами у вас всегда <span class="hero__header-print"></span>
                                 </h3>
                                 <p class="hero__subheader">
                                     Клининговая компания №1 в Приморском крае
@@ -180,18 +179,42 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="hero__button-wrapper button__wrapper">
-                                <button class="button hero__button modal-open">Заказать уборку</button>
-                                <button class="hero__button--arrow button--arrow modal-open">
-                                    <span class="arrow-container"></span>
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                                        <path d="M15.5713 8.5H1.42915" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M8.50022 15.5711L15.5713 8.5L8.50022 1.42893" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </button>
+                            <div class="hero__action">
+                                <p>Профессиональный клининг для дома и офиса с гарантией качества.</p>
+                                <div class="hero__button-wrapper button__wrapper">
+                                    <button class="button hero__button modal-open">Заказать уборку</button>
+                                    <button class="hero__button--arrow button--arrow modal-open">
+                                        <span class="arrow-container"></span>
+                                        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                            <path d="M15.5713 8.5H1.42915" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M8.50022 15.5711L15.5713 8.5L8.50022 1.42893" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                <div class="controls hidden-tablet">
+                    <button id="heroBtnPrev" class="hero__controls-prev controls__button controls__prev">
+                        <img
+                            src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19%2012H5'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M12%205L5%2012L12%2019'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
+                            alt="Назад"
+                            class="controls__img"
+                            width="24" height="24"
+                        >
+                    </button>
+
+                    <p class="hero__controls-current controls__current"></p>
+
+                    <button id="heroBtnNext" class="hero__controls-next controls__button controls__next">
+                        <img
+                            src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5%2012H19'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M12%205L19%2012L12%2019'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
+                            alt="Вперед"
+                            class="controls__img"
+                            width="24" height="24"
+                        >
+                    </button>
+                </div>
                 <div class="hero__splide splide">
                     <div class="hero__splide-track splide__track">
                         {% if videos %}
@@ -675,10 +698,33 @@
                     <ul class="team__splide-list splide__list">
                         {% for emp in employee %}
                         <li class="team__splide-slide splide__slide">
-                            <img src="{{ emp.photo.url }}" alt="{{ emp.name }}" class="team__img" width="322" height="370">
-                            <div class="team__info">
-                                <p class="team__info-name">{{ emp.name }}</p>
-                                <p class="team__info-post">{{ emp.position }}</p>
+                            <div class="slide-inner--deactive">
+                                <div class="team__data">
+                                    <img src="{{ emp.photo.url }}" alt="{{ emp.name }}" class="team__img">
+                                    <div class="team__info">
+                                        <p class="team__info-name">{{ emp.name }}</p>
+                                        <p class="team__info-post">{{ emp.position }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-inner--active">
+                                <img src="{{ emp.photo.url }}" alt="{{ emp.name }}" class="team__img" width="322" height="370">
+                                <div class="team__data">
+                                    <div class="team__experience">
+                                        <img
+                                            src="data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.15327 2.33977L10.3266 4.68643C10.4866 5.0131 10.9133 5.32643 11.2733 5.38643L13.3999 5.73977C14.7599 5.96643 15.0799 6.9531 14.0999 7.92643L12.4466 9.57977C12.1666 9.85977 12.0133 10.3998 12.0999 10.7864L12.5733 12.8331C12.9466 14.4531 12.0866 15.0798 10.6533 14.2331L8.65994 13.0531C8.29994 12.8398 7.70661 12.8398 7.33994 13.0531L5.34661 14.2331C3.91994 15.0798 3.05327 14.4464 3.42661 12.8331L3.89994 10.7864C3.98661 10.3998 3.83327 9.85977 3.55327 9.57977L1.89994 7.92643C0.926606 6.9531 1.23994 5.96643 2.59994 5.73977L4.72661 5.38643C5.07994 5.32643 5.50661 5.0131 5.66661 4.68643L6.83994 2.33977C7.47994 1.06643 8.51994 1.06643 9.15327 2.33977Z' stroke='%230060DF' stroke-width='1.2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E "
+                                            alt="Exp"
+                                            width="16" height="16"
+                                        >
+                                        <p class="team__experience-exp"><span>СТАЖ:</span> 25 ЛЕТ</p>
+                                    </div>
+                                    <div class="team__info">
+                                        <p class="team__info-name">{{ emp.name }}</p>
+                                        <p class="team__info-post">{{ emp.position }}</p>
+                                        <p class="team__info-descript">Кратко описание может быть с цитатой или историей или описанием опыта работы и квалификации или что-то от себя или ещё что-то интересное!</p>
+                                    </div>
+                                    <div></div>
+                                </div>
                             </div>
                         </li>
                         {% endfor %}
@@ -686,7 +732,7 @@
                 </div>
             </div>
             <div class="controls hidden-tablet">
-                <button id="teamBtnPrev" class="reviews__controls-prev controls__button controls__prev">
+                <button id="teamBtnPrev" class="team__controls-prev controls__button controls__prev is-disabled">
                     <img
                         src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19%2012H5'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M12%205L5%2012L12%2019'%20stroke='%230060DF'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
                         alt="Назад"
